@@ -2,7 +2,7 @@
 Prebuilt binary for TensorflowLite's standalone installer. For RaspberryPi.  
 Here is the Tensorflow's official **[README](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/tools/pip_package)**.
 
-**WARNING!!　It does not seem to work properly as of November 15, 2018.** 
+**＜WARNING!!＞　It does not seem to work properly as of November 15, 2018.** 
 
 # Usage
 **Python2.7**  
