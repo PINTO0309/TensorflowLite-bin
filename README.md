@@ -5,11 +5,13 @@ Here is the Tensorflow's official **[README](https://github.com/tensorflow/tenso
 # Usage
 **Python2.7**  
 ```
+$ sudo apt install swig libjpeg-dev zlib1g-dev python3-dev python3-numpy
 $ wget https://github.com/PINTO0309/TensorflowLite-bin/raw/master/1.12.0rc0/tflite_runtime-1.12.0rc0-cp27-cp27mu-linux_armv7l.whl
 $ sudo pip2 install --upgrade tflite_runtime-1.12.0rc0-cp27-cp27mu-linux_armv7l.whl
 ```
 **Python3.5**  
 ```
+$ sudo apt install swig libjpeg-dev zlib1g-dev python3-dev python3-numpy
 $ wget https://github.com/PINTO0309/TensorflowLite-bin/raw/master/1.12.0rc0/tflite_runtime-1.12.0rc0-cp35-cp35m-linux_armv7l.whl
 $ sudo pip3 install --upgrade tflite_runtime-1.12.0rc0-cp35-cp35m-linux_armv7l.whl
 ```
