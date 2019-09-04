@@ -20,5 +20,6 @@ interpreter = tflr.lite.Interpreter(model_path="foo.tflite")
 ## Build parameter
 
 ```bash
+make BASE_IMAGE=debian:stretch PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
 make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
 ```
