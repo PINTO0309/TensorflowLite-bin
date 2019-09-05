@@ -31,3 +31,5 @@ make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y d
 make BASE_IMAGE=debian:stretch PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 ```
+## Operation check
+**[PINTO0309/Tensorflow-bin - Sample of MultiThread x4](https://github.com/PINTO0309/Tensorflow-bin#operation-check)**
