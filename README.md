@@ -33,3 +33,6 @@ make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB
 ```
 ## Operation check
 **[PINTO0309/Tensorflow-bin - Sample of MultiThread x4 by Tensorflow Lite](https://github.com/PINTO0309/Tensorflow-bin#operation-check)**
+
+## Reference
+**tflite only python package https://github.com/PINTO0309/Tensorflow-bin/issues/15**
