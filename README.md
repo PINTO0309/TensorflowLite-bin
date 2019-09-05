@@ -20,8 +20,8 @@ $ sudo pip3 install --upgrade tflite_runtime-1.14.0-cp37-cp37m-linux_armv7l.whl
 Unlike tensorflow this will be installed to a tflite_runtime namespace.  
 You can then use the Tensorflow Lite interpreter as.  
 ```python
-import tflite_runtime as tflr
-interpreter = tflr.lite.Interpreter(model_path="foo.tflite")
+from tflite_runtime.interpreter import Interpreter
+interpreter = Interpreter(model_path="foo.tflite")
 ```
 ## Build parameter
 
