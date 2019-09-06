@@ -2,6 +2,15 @@
 Prebuilt binary for TensorflowLite's standalone installer. Fast tuning with MultiTread. For RaspberryPi.  
 Here is the Tensorflow's official **[README](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/tools/pip_package)**.
 
+## Python API packages
+
+|Device|OS|Distribution|Architecture|Python ver|Note|
+|:--|:--|:--|:--|:--|:--|
+|RaspberryPi3/4|Raspbian/Debian|Stretch|armhf / armv7l|3.5.3|32bit|
+|RaspberryPi3/4|Raspbian/Debian|Buster|armhf / armv7l|3.7.3|32bit|
+|RaspberryPi3/4|Raspbian/Debian|Stretch|aarch64 / armv8|3.5.3|64bit|
+|RaspberryPi3/4|Raspbian/Debian|Buster|aarch64 / armv8|3.7.3|64bit|
+
 ## Usage
 **Python3.5 - Stretch**  
 ```bash
