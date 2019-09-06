@@ -6,10 +6,10 @@ Here is the Tensorflow's official **[README](https://github.com/tensorflow/tenso
 
 |Device|OS|Distribution|Architecture|Python ver|Note|
 |:--|:--|:--|:--|:--|:--|
-|RaspberryPi3/4|Raspbian/Debian|Stretch|armhf / armv7l|3.5.3|32bit|
-|RaspberryPi3/4|Raspbian/Debian|Buster|armhf / armv7l|3.7.3|32bit|
-|RaspberryPi3/4|Raspbian/Debian|Stretch|aarch64 / armv8|3.5.3|64bit|
-|RaspberryPi3/4|Raspbian/Debian|Buster|aarch64 / armv8|3.7.3|64bit|
+|RaspberryPi3/4|Raspbian/Debian|Stretch|armhf / armv7l|3.5|32bit|
+|RaspberryPi3/4|Raspbian/Debian|Buster|armhf / armv7l|3.7|32bit|
+|RaspberryPi3/4|Raspbian/Debian|Stretch|aarch64 / armv8|3.5|64bit|
+|RaspberryPi3/4|Raspbian/Debian|Buster|aarch64 / armv8|3.7|64bit|
 
 ## Usage
 **Python3.5 - Stretch**  
