@@ -47,6 +47,7 @@ make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**  
 ![01](media/01.png)  
 
+- **Environmental preparation**
 ```bash
 $ cd ~;mkdir test
 $ curl https://raw.githubusercontent.com/tensorflow/tensorflow/master/tensorflow/lite/examples/label_image/testdata/grace_hopper.bmp > ~/test/grace_hopper.bmp
@@ -55,7 +56,7 @@ $ mv ~/test/mobilenet_v1_1.0_224/labels.txt ~/test/
 $ curl http://download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_1.0_224_quant.tgz | tar xzv -C ~/test
 $ cd ~/test
 ```
-
+- **label_image.py**
 ```python
 import argparse
 import numpy as np
@@ -123,6 +124,7 @@ if __name__ == "__main__":
 
   print("time: ", stop_time - start_time)
 ```
+- **Inference test**
 ```bash
 $ python3 label_image.py \
 --num_threads 4 \
