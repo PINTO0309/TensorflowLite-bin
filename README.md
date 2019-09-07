@@ -46,6 +46,16 @@ make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB
 ## Operation check
 **[PINTO0309/Tensorflow-bin - Sample of MultiThread x4 by Tensorflow Lite](https://github.com/PINTO0309/Tensorflow-bin#operation-check)**  
 ![01](media/01.png)  
+
+```bash
+$ cd ~;mkdir test
+$ curl https://raw.githubusercontent.com/tensorflow/tensorflow/master/tensorflow/lite/examples/label_image/testdata/grace_hopper.bmp > ~/test/grace_hopper.bmp
+$ curl https://storage.googleapis.com/download.tensorflow.org/models/mobilenet_v1_1.0_224_frozen.tgz | tar xzv -C ~/test mobilenet_v1_1.0_224/labels.txt
+$ mv ~/test/mobilenet_v1_1.0_224/labels.txt ~/test/
+$ curl http://download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_1.0_224_quant.tgz | tar xzv -C ~/test
+$ cd ~/test
+```
+
 ```python
 import argparse
 import numpy as np
