@@ -44,7 +44,7 @@ make BASE_IMAGE=debian:stretch PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DE
 make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 ```
 ## Operation check
-**Sample of MultiThread x4 by Tensorflow Lite**  
+**Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**  
 ![01](media/01.png)  
 
 ```bash
@@ -123,6 +123,12 @@ if __name__ == "__main__":
 
   print("time: ", stop_time - start_time)
 ```
-
+```bash
+$ python3 label_image.py \
+--num_threads 4 \
+--image grace_hopper.bmp \
+--model_file mobilenet_v1_1.0_224_quant.tflite \
+--label_file labels.txt
+```
 ## Reference
 **tflite only python package https://github.com/PINTO0309/Tensorflow-bin/issues/15**
