@@ -105,7 +105,7 @@ if __name__ == "__main__":
   if floating_model:
     input_data = (np.float32(input_data) - args.input_mean) / args.input_std
 
-  interpreter.set_num_threads(int(args.num_threads))
+  interpreter.set_num_threads(int(args.num_threads)) #<- Specifies the num of threads assigned to inference
   interpreter.set_tensor(input_details[0]['index'], input_data)
 
   start_time = time.time()
