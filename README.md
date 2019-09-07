@@ -44,7 +44,7 @@ make BASE_IMAGE=debian:stretch PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DE
 make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 ```
 ## Operation check
-**[PINTO0309/Tensorflow-bin - Sample of MultiThread x4 by Tensorflow Lite](https://github.com/PINTO0309/Tensorflow-bin#operation-check)**  
+**Sample of MultiThread x4 by Tensorflow Lite**  
 ![01](media/01.png)  
 
 ```bash
