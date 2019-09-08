@@ -132,11 +132,14 @@ $ python3 label_image.py \
 --model_file mobilenet_v1_1.0_224_quant.tflite \
 --label_file labels.txt
 ```
+## List of quantized models
+**https://www.tensorflow.org/lite/guide/hosted_models**  
+
 ## Other MobileNetV1 weight files
 **https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md**  
 
 ## Other MobileNetV2 weight files
-**https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet/README.md**
+**https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet/README.md**  
 
 ## Reference
 **tflite only python package https://github.com/PINTO0309/Tensorflow-bin/issues/15**
