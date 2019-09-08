@@ -132,5 +132,8 @@ $ python3 label_image.py \
 --model_file mobilenet_v1_1.0_224_quant.tflite \
 --label_file labels.txt
 ```
+## Other MobileNetV1 weight files
+**https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md**  
+
 ## Reference
 **tflite only python package https://github.com/PINTO0309/Tensorflow-bin/issues/15**
