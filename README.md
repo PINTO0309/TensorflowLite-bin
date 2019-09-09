@@ -47,8 +47,7 @@ make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**  
 ![01](media/01.png)  
   
-**Sample of MultiThread x4 by Tensorflow Lite [MobileNetV2 / 68ms]**
-![02](media/02.png)  
+
 
 - **Environmental preparation**
 ```bash
