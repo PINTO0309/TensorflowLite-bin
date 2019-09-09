@@ -145,4 +145,5 @@ $ python3 label_image.py \
 **https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet/README.md**  
 
 ## Reference
-**tflite only python package https://github.com/PINTO0309/Tensorflow-bin/issues/15**
+**tflite only python package https://github.com/PINTO0309/Tensorflow-bin/issues/15**  
+**Incorrect predictions of Mobilenet_V2 https://github.com/tensorflow/tensorflow/issues/31229#issuecomment-527296093**
