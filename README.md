@@ -141,7 +141,7 @@ $ python3 label_image.py \
 ## Operation check 【ObjectDetection】
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**  
 ![03](media/03.png)  
-![04](media/04.jpg)  
+![04](media/04.png)  
 
 ## List of quantized models
 **https://www.tensorflow.org/lite/guide/hosted_models**  
