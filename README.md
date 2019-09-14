@@ -45,7 +45,7 @@ make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y d
 make BASE_IMAGE=debian:stretch PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 ```
-## Operation check
+## Operation check 【Classification】
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**  
 ![01](media/01.png)  
   
@@ -137,6 +137,12 @@ $ python3 label_image.py \
 --model_file mobilenet_v1_1.0_224_quant.tflite \
 --label_file labels.txt
 ```
+
+## Operation check 【ObjectDetection】
+**Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**  
+![03](media/03.png)  
+![04](media/04.jpg)  
+
 ## List of quantized models
 **https://www.tensorflow.org/lite/guide/hosted_models**  
 
