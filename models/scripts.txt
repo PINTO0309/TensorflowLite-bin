@@ -1,0 +1,19 @@
+https://coral.withgoogle.com/models/
+
+wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03.tar.gz
+tar -zxvf ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03.tar.gz
+
+tflite_convert \
+--graph_def tflite_graph.pb \
+--output_file mobilenet_ssd_v2_coco_quant_postprocess.tflite \
+--input_arrays=normalized_input_image_tensor \
+--input_shapes=1,300,300,3 \
+--output_arrays='TFLite_Detection_PostProcess','TFLite_Detection_PostProcess:1','TFLite_Detection_PostProcess:2','TFLite_Detection_PostProcess:3' \
+--inference_type=QUANTIZED_UINT8 \
+--std_dev_values=127 \
+--mean_values=128 \
+--allow_custom_ops
+
+
+https://github.com/QuantuMobileSoftware/mobile_detector.git
+
