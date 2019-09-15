@@ -229,7 +229,7 @@ if __name__ == '__main__':
     vidfps = 60
     #core_num = mp.cpu_count()
     core_num    = 1
-    threads_num = 10
+    threads_num = 4
 
     try:
         mp.set_start_method('forkserver')

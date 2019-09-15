@@ -138,7 +138,7 @@ if __name__ == '__main__':
     parser.add_argument("--camera_width", type=int, default=640, help="width.")
     parser.add_argument("--camera_height", type=int, default=480, help="height.")
     parser.add_argument("--vidfps", type=int, default=150, help="Frame rate.")
-    parser.add_argument("--num_threads", type=int, default=10, help="Threads.")
+    parser.add_argument("--num_threads", type=int, default=4, help="Threads.")
     args = parser.parse_args()
 
     model         = args.model
