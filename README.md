@@ -147,6 +147,10 @@ $ python3 label_image.py \
 $ python3 mobilenetv2ssd.py
 ```
 
+**MobileNetV2-SSD (UINT8) + Corei7 CPU only + USB Camera + 10 Threads + Async**  
+![05](media/05.gif)  
+
+
 ## List of quantized models
 **https://www.tensorflow.org/lite/guide/hosted_models**  
 
