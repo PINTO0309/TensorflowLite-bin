@@ -142,6 +142,9 @@ $ python3 label_image.py \
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV2-SSD / 160ms]**  
 ![03](media/03.png)  
 ![04](media/04.png)  
+**Sample of MultiThread x4 by Tensorflow Lite + Ubuntu18.04 (aarch64) + RaspberryPi3 [MobileNetV2-SSD / 140ms]**  
+![06](media/06.png)  
+
 - **Inference test**
 ```bash
 $ python3 mobilenetv2ssd.py
