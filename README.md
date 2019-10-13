@@ -11,9 +11,9 @@ My article. **[Tensorflow Lite v1.14.0 / v1.15.0-rc0 armhf (armv7l) is tuned for
 |Device|OS|Distribution|Architecture|Python ver|Note|
 |:--|:--|:--|:--|:--|:--|
 |RaspberryPi3/4|Raspbian/Debian|Stretch|armhf / armv7l|3.5|32bit|
-|RaspberryPi3/4|Raspbian/Debian|Buster|armhf / armv7l|3.7|32bit|
+|RaspberryPi3/4|Raspbian/Debian|Buster|armhf / armv7l|3.7 / 2.7|32bit|
 |RaspberryPi3/4|Raspbian/Debian|Stretch|aarch64 / armv8|3.5|64bit|
-|RaspberryPi3/4|Raspbian/Debian|Buster|aarch64 / armv8|3.7|64bit|
+|RaspberryPi3/4|Raspbian/Debian|Buster|aarch64 / armv8|3.7 / 2.7|64bit|
 
 ## Usage
 **Python3.5 - Stretch**  
