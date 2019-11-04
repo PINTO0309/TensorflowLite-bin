@@ -1,0 +1,8 @@
+### https://github.com/tensorflow/tensorflow/issues/33959#issuecomment-549333589
+
+bazel build \
+-s //tensorflow/lite:libtensorflowlite.so \
+--config=android_arm64 \
+--cxxopt='--std=c++11' \
+-c opt \
+--config=v2
