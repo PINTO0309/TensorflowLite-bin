@@ -1,0 +1,20 @@
+$ ~
+$ git clone https://github.com/buchgr/bazel-remote.git
+$ cd bazel-remote
+$ sudo docker pull buchgr/bazel-remote-cache
+$ sudo docker run -v ${HOME}/bazel-remote/cache:/data -p 9090:8080 buchgr/bazel-remote-cache
+
+$ sudo bazel clean
+$ cd tensorflow/lite
+
+$ sudo bazel build \
+--config=opt \
+--config=noaws \
+--config=nohdfs \
+--config=noignite \
+--config=nokafka \
+--config=nonccl \
+--config=v2 \
+--remote_http_cache=http://localhost:9090 \
+//tensorflow/lite:libtensorflowlite.so
+
