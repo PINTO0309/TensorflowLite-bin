@@ -32,13 +32,13 @@ Please refer to the following URL for details of performance. **[Post-training q
 ## Usage
 **Python3.5 - Stretch**  
 ```bash
-$ sudo apt install swig libjpeg-dev zlib1g-dev python3-dev python3-numpy unzip
+$ sudo apt install swig libjpeg-dev zlib1g-dev python3-dev python3-numpy unzip wget python3-pip curl
 $ wget https://github.com/PINTO0309/TensorflowLite-bin/raw/master/1.15.0/tflite_runtime-1.15.0-cp35-cp35m-linux_armv7l.whl
 $ sudo pip3 install --upgrade tflite_runtime-1.15.0-cp35-cp35m-linux_armv7l.whl
 ```
 **Python3.7 - Buster**  
 ```bash
-$ sudo apt install swig libjpeg-dev zlib1g-dev python3-dev python3-numpy unzip
+$ sudo apt install swig libjpeg-dev zlib1g-dev python3-dev python3-numpy unzip wget python3-pip curl
 $ wget https://github.com/PINTO0309/TensorflowLite-bin/raw/master/1.15.0/tflite_runtime-1.15.0-cp37-cp37m-linux_armv7l.whl
 $ sudo pip3 install --upgrade tflite_runtime-1.15.0-cp37-cp37m-linux_armv7l.whl
 ```
