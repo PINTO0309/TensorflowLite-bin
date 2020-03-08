@@ -155,20 +155,21 @@ $ python3 label_image.py \
 ```
 
 ## Operation check 【ObjectDetection】
-**Sample of MultiThread x4 by Tensorflow Lite + Raspbian Buster (armhf) + RaspberryPi3 [MobileNetV2-SSD / 160ms]**  
+### Sample of MultiThread x4 by Tensorflow Lite + Raspbian Buster (armhf) + RaspberryPi3 [MobileNetV2-SSD / 160ms]  
 ![03](media/03.png)  
 ![04](media/04.png)  
-**Sample of MultiThread x4 by Tensorflow Lite + Ubuntu18.04 (aarch64) + RaspberryPi3 [MobileNetV2-SSD / 140ms]**  
+### Sample of MultiThread x4 by Tensorflow Lite + Ubuntu18.04 (aarch64) + RaspberryPi3 [MobileNetV2-SSD / 140ms]  
 ![06](media/06.png)  
 
-- **Inference test**
+## Inference test
 ```bash
 $ python3 mobilenetv2ssd.py
 ```
-
-**MobileNetV2-SSD (UINT8) + Corei7 CPU only + USB Camera + 10 Threads + Async**  
+### MobileNetV2-SSD (UINT8) + Corei7 CPU only + USB Camera + 10 Threads + Async  
 ![05](media/05.gif)  
-![mnv2](models/mobilenet_ssd_v2_coco_quant_postprocess.png)
+  
+### MobileNetV2-SSDLite (UINT8) + RaspberryPi4 CPU only + USB Camera 640x480 + 4 Threads + Sync + Disp 1080p  
+![07](media/07.gif)  
 
 ## List of quantized models
 **https://www.tensorflow.org/lite/guide/hosted_models**  
