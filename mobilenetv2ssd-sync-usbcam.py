@@ -1,5 +1,6 @@
 import argparse
 #import platform
+import sys
 import numpy as np
 import cv2
 import time
@@ -135,6 +136,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", default="models/mobilenet_ssd_v2_coco_quant_postprocess.tflite", help="Path of the detection model.")
     parser.add_argument("--usbcamno", type=int, default=0, help="USB Camera number.")
+    parser.add_argument("--camera_type", default="usb_cam", help="set usb_cam or raspi_cam")
     parser.add_argument("--camera_width", type=int, default=640, help="width.")
     parser.add_argument("--camera_height", type=int, default=480, help="height.")
     parser.add_argument("--vidfps", type=int, default=150, help="Frame rate.")
@@ -143,16 +145,30 @@ if __name__ == '__main__':
 
     model         = args.model
     usbcamno      = args.usbcamno
+    camera_type   = args.camera_type
     camera_width  = args.camera_width
     camera_height = args.camera_height
     vidfps        = args.vidfps
     num_threads   = args.num_threads
 
-    cam = cv2.VideoCapture(usbcamno)
-    cam.set(cv2.CAP_PROP_FPS, vidfps)
-    cam.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cam.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-    window_name = "USB Camera"
+    if camera_type == "usb_cam":
+        cam = cv2.VideoCapture(usbcamno)
+        cam.set(cv2.CAP_PROP_FPS, vidfps)
+        cam.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
+        cam.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
+        window_name = "USB Camera"
+    elif camera_type == "raspi_cam":
+        from picamera.array import PiRGBArray
+        from picamera import PiCamera
+        cam = PiCamera()
+        cam.resolution = (camera_width, camera_height)
+        stream = PiRGBArray(cam)
+        window_name = "Raspi Camera"
+    else:
+        print('[Error] --camera_type: wrong device')
+        parser.print_help()
+        sys.exit()
+    print(window_name)
     cv2.namedWindow(window_name, cv2.WINDOW_AUTOSIZE)
 
     detector = ObjectDetectorLite(model, num_threads)
@@ -160,10 +176,14 @@ if __name__ == '__main__':
     while True:
         t1 = time.perf_counter()
 
-        ret, color_image = cam.read()
-        if not ret:
-            continue
-
+        if camera_type == 'raspi_cam':
+            cam.capture(stream, 'bgr', use_video_port=True)
+            color_image = stream.array
+            stream.truncate(0)
+        else:
+            ret, color_image = cam.read()
+            if not ret:
+              continue
 
         prepimg = cv2.resize(color_image, (300, 300))
         frames = prepimg.copy()
@@ -174,7 +194,7 @@ if __name__ == '__main__':
 
         imdraw = overlay_on_image(frames, res, camera_width, camera_height)
         imdraw = cv2.resize(imdraw, (camera_width, camera_height))
-        cv2.imshow('USB Camera', imdraw)
+        cv2.imshow(window_name, imdraw)
 
         if cv2.waitKey(1)&0xFF == ord('q'):
             break
