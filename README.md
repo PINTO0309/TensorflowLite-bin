@@ -68,8 +68,6 @@ make BASE_IMAGE=debian:stretch PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DE
 make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
-make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
-make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
 ```
 ## Operation check 【Classification】
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**  
