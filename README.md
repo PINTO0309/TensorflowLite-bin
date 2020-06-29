@@ -59,7 +59,7 @@ from tflite_runtime.interpreter import Interpreter
 interpreter = Interpreter(model_path="foo.tflite")
 ```
 ## Build parameter
-
+- Tensorflow v2.2.0 version or earlier
 ```bash
 cd tensorflow/tensorflow/lite/tools/pip_package
 make BASE_IMAGE=debian:stretch PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
@@ -68,6 +68,31 @@ make BASE_IMAGE=debian:stretch PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DE
 make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
+```
+- Tensorflow v2.3.0-rc0 version or later
+```bash
+git clone -b v2.3.0-rc0 https://github.com/tensorflow/tensorflow.git
+cd tensorflow
+
+sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex=true \
+  -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
+  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
+  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
+
+sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex=true \
+  -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
+  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
+  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
+
+sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex=true \
+  -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
+  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
+  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
+
+sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex=true \
+  -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
+  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
+  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 ```
 ## Operation check 【Classification】
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**  
