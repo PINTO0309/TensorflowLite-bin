@@ -56,7 +56,10 @@ Unlike tensorflow this will be installed to a tflite_runtime namespace.
 You can then use the Tensorflow Lite interpreter as.  
 ```python
 from tflite_runtime.interpreter import Interpreter
+### Tensorflow v2.2.0
 interpreter = Interpreter(model_path="foo.tflite")
+### Tensorflow v2.3.0+
+interpreter = Interpreter(model_path="foo.tflite", num_threads=4)
 ```
 ## Build parameter
 - Tensorflow v2.2.0 version or earlier
