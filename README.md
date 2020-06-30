@@ -96,6 +96,28 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex
   -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
+
+
+nano tensorflow/tools/ci_build/Dockerfile.pi-python3
+#FROM ubuntu:16.04
+FROM ubuntu:18.04
+
+#RUN add-apt-repository -y ppa:openjdk-r/ppa && \
+#    add-apt-repository -y ppa:george-edison55/cmake-3.x
+RUN add-apt-repository -y ppa:openjdk-r/ppa
+
+nano tensorflow/tools/ci_build/install/install_deb_packages.sh
+#apt-key adv --keyserver keyserver.ubuntu.com --recv 084ECFC5828AB726
+
+sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex=true \
+  -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.6" \
+  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
+  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
+
+sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex=true \
+  -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.6" \
+  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
+  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 ```
 ## Operation check 【Classification】
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**  
