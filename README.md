@@ -79,7 +79,7 @@ cd tensorflow
 ```
 
 ```bash
-$ nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
+nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
 
 # Build python interpreter_wrapper.
 cd "${BUILD_DIR}"
@@ -127,6 +127,7 @@ esac
 ```
 
 ```bash
+### Python 3.7
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
@@ -135,6 +136,7 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCL
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 
+### Python 3.8
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
@@ -143,6 +145,7 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCL
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 
+### Python 3.5
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
