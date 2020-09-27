@@ -72,28 +72,82 @@ make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB
 make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
 ```
-- Tensorflow v2.3.0-rc0 version or later
+- Tensorflow v2.3.0 version or later
 ```bash
-git clone -b v2.3.0-rc0 https://github.com/tensorflow/tensorflow.git
+git clone -b v2.3.0 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
+```
 
-sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex=true \
-  -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
+```bash
+$ nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
+
+# Build python interpreter_wrapper.
+cd "${BUILD_DIR}"
+case "${TENSORFLOW_TARGET}" in
+  armhf)
+    BAZEL_FLAGS="--config=elinux_armhf
+      --copt=-march=armv7-a --copt=-mfpu=neon-vfpv4
+      --copt=-O3 --copt=-fno-tree-pre --copt=-fpermissive
+      --define tensorflow_mkldnn_contraction_kernel=0
+      --define=raspberry_pi_with_neon=true"
+    ;;
+  aarch64)
+    BAZEL_FLAGS="--config=elinux_aarch64
+      --define tensorflow_mkldnn_contraction_kernel=0
+      --copt=-O3"
+    ;;
+  *)
+    ;;
+esac
+
+　↓
+
+# Build python interpreter_wrapper.
+cd "${BUILD_DIR}"
+case "${TENSORFLOW_TARGET}" in
+  armhf)
+    BAZEL_FLAGS="--config=elinux_armhf
+      --copt=-march=armv7-a --copt=-mfpu=neon-vfpv4
+      --copt=-O3 --copt=-fno-tree-pre --copt=-fpermissive
+      --define tensorflow_mkldnn_contraction_kernel=0
+      --define=raspberry_pi_with_neon=true
+      --define=tflite_pip_with_flex=true
+      --define=tflite_with_xnnpack=true"
+    ;;
+  aarch64)
+    BAZEL_FLAGS="--config=elinux_aarch64
+      --define tensorflow_mkldnn_contraction_kernel=0
+      --define=tflite_pip_with_flex=true
+      --define=tflite_with_xnnpack=true
+      --copt=-O3"
+    ;;
+  *)
+    ;;
+esac
+```
+
+```bash
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
 
-sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex=true \
-  -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 
-sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex=true \
-  -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
+  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
+  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
+
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
+  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
+  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
+
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
 
-sudo CI_DOCKER_EXTRA_PARAMS="-e CUSTOM_BAZEL_FLAGS=--define=tflite_pip_with_flex=true \
-  -e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 ```
