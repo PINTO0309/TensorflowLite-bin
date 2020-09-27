@@ -62,7 +62,7 @@ interpreter = Interpreter(model_path="foo.tflite")
 interpreter = Interpreter(model_path="foo.tflite", num_threads=4)
 ```
 ## Build parameter
-- Tensorflow v2.2.0 version or earlier
+- **Tensorflow v2.2.0 version or earlier**
 ```bash
 cd tensorflow/tensorflow/lite/tools/pip_package
 make BASE_IMAGE=debian:stretch PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
@@ -72,7 +72,7 @@ make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB
 make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
 ```
-- Tensorflow v2.3.0 version or later
+- **Tensorflow v2.3.0 version or later**
 ```bash
 git clone -b v2.3.0 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
