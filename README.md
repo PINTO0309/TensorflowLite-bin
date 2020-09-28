@@ -136,7 +136,7 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCL
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 
-### Python 3.8
+### Python 3.8 - master branch only, As of Sep 28, 2020
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
