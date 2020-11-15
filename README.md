@@ -1,6 +1,6 @@
 # TensorflowLite-bin
 Prebuilt binary for TensorflowLite's standalone installer. Fast tuning with MultiTread. For RaspberryPi.  
-Here is the Tensorflow's official **[README](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/tools/pip_package)**.  
+Here is the Tensorflow's official **[README](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/tools/pip_package)**. I provide a **`FlexDelegate`** and **`XNNPACK`** enabled binary.  
 
 If you want the best performance with RaspberryPi4/3, install Ubuntu 18.04+ aarch64 (64bit) instead of Raspbian armv7l (32bit). The official Tensorflow Lite is performance tuned for aarch64. On aarch64 OS, performance is about 4 times higher than on armv7l OS.  
 **[How to install Ubuntu 19.10 aarch64 (64bit) on RaspberryPi4 - Qiita - PINTO](https://qiita.com/PINTO/items/adc5db7af7a5996c0f72)**
@@ -47,8 +47,8 @@ $ sudo pip3 install --upgrade tflite_runtime-2.2.0-cp35-cp35m-linux_armv7l.whl
 ```bash
 $ sudo apt install swig libjpeg-dev zlib1g-dev python3-dev python3-numpy \
                    unzip wget python3-pip curl git cmake make
-$ wget https://github.com/PINTO0309/TensorflowLite-bin/raw/master/2.3.0/tflite_runtime-2.3.0-cp37-cp37m-linux_armv7l.whl
-$ sudo pip3 install --upgrade tflite_runtime-2.3.0-cp37-cp37m-linux_armv7l.whl
+$ wget https://github.com/PINTO0309/TensorflowLite-bin/raw/master/2.4.0-rc1/tflite_runtime-2.4.0rc1-py3-none-linux_armv7l.whl
+$ sudo pip3 install --upgrade tflite_runtime-2.4.0rc1-py3-none-linux_armv7l.whl
 ```
 
 ## Note
@@ -128,29 +128,29 @@ esac
 
 ```bash
 ### Python 3.7
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.7 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
 
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.7 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 
 ### Python 3.8 - master branch only, As of Sep 28, 2020
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.8 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
 
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.8 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 
 ### Python 3.5
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.5 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
 
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.5 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 ```
