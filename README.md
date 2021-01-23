@@ -51,8 +51,8 @@ $ sudo pip3 install --upgrade tflite_runtime-2.2.0-cp35-cp35m-linux_armv7l.whl
 ```bash
 $ sudo apt install swig libjpeg-dev zlib1g-dev python3-dev python3-numpy \
                    unzip wget python3-pip curl git cmake make
-$ wget https://github.com/PINTO0309/TensorflowLite-bin/raw/master/2.4.0-rc2/tflite_runtime-2.4.0rc2-py3-none-linux_armv7l.whl
-$ sudo pip3 install --upgrade tflite_runtime-2.4.0rc2-py3-none-linux_armv7l.whl
+$ wget https://github.com/PINTO0309/TensorflowLite-bin/raw/master/2.4.0/tflite_runtime-2.4.0-py3-none-linux_armv7l.whl
+$ sudo pip3 install --upgrade tflite_runtime-2.4.0-py3-none-linux_armv7l.whl
 ```
 
 ## Note
@@ -78,7 +78,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ```
 - **Tensorflow v2.3.0 version or later**
 ```bash
-git clone -b v2.4.0-rc4 https://github.com/tensorflow/tensorflow.git
+git clone -b v2.4.0 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
 
