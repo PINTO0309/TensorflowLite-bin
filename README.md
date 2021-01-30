@@ -1,7 +1,9 @@
 # TensorflowLite-bin
 Prebuilt binary for TensorflowLite's standalone installer. For RaspberryPi.  
-Here is the Tensorflow's official **[README](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/tools/pip_package)**. I provide a **`FlexDelegate`**, **`MediaPipe Custom OP`** and **`XNNPACK`** enabled binary.  
-
+I provide a **`FlexDelegate`**, **`MediaPipe Custom OP`** and **`XNNPACK`** enabled binary.  
+  
+Here is the Tensorflow's official **[README](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/tools/pip_package)**.  
+  
 If you want the best performance with RaspberryPi4/3, install Ubuntu 18.04+ aarch64 (64bit) instead of Raspbian armv7l (32bit). The official Tensorflow Lite is performance tuned for aarch64. On aarch64 OS, performance is about 4 times higher than on armv7l OS.  
 **[How to install Ubuntu 19.10 aarch64 (64bit) on RaspberryPi4 - Qiita - PINTO](https://qiita.com/PINTO/items/adc5db7af7a5996c0f72)**
 
