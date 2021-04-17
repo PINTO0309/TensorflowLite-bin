@@ -104,7 +104,11 @@ case "${TENSORFLOW_TARGET}" in
       --define tensorflow_mkldnn_contraction_kernel=0
       --copt=-O3"
     ;;
+  native)
+    BAZEL_FLAGS="--copt=-O3 --copt=-march=native"
+    ;;
   *)
+    BAZEL_FLAGS="--copt=-O3"
     ;;
 esac
 
@@ -129,7 +133,15 @@ case "${TENSORFLOW_TARGET}" in
       --define=tflite_with_xnnpack=true
       --copt=-O3"
     ;;
+  native)
+    BAZEL_FLAGS="--copt=-O3 --copt=-march=native
+      --define=tflite_pip_with_flex=true
+      --define=tflite_with_xnnpack=true"
+    ;;
   *)
+    BAZEL_FLAGS="--copt=-O3
+      --define=tflite_pip_with_flex=true
+      --define=tflite_with_xnnpack=true"
     ;;
 esac
 ```
