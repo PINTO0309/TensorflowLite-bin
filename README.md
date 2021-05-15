@@ -148,6 +148,16 @@ case "${TENSORFLOW_TARGET}" in
 esac
 ```
 
+- TensorFlow v2.5.0 issue
+https://github.com/tensorflow/tensorflow/pull/49199
+- tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
+```
+cp "${TENSORFLOW_LITE_DIR}/python/interpreter.py" \
+   "${TENSORFLOW_LITE_DIR}/python/metrics_interface.py" \
+   "${TENSORFLOW_LITE_DIR}/python/metrics_portable.py" \
+   "${BUILD_DIR}/tflite_runtime"
+```
+
 ```bash
 ### Python 3.7
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.7 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
