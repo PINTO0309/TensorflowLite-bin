@@ -72,7 +72,7 @@ interpreter = Interpreter(model_path="foo.tflite")
 interpreter = Interpreter(model_path="foo.tflite", num_threads=4)
 ```
 ## Build parameter
-- **Tensorflow v2.2.0 version or earlier**
+### **1. Tensorflow v2.2.0 version or earlier**
 ```bash
 cd tensorflow/tensorflow/lite/tools/pip_package
 make BASE_IMAGE=debian:stretch PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
@@ -82,12 +82,22 @@ make BASE_IMAGE=debian:buster PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB
 make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 BUILD_DEB=y docker-build
 make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y docker-build
 ```
-- **Tensorflow v2.3.0 version or later**
+### **2. Tensorflow v2.3.0 version or later**
+- git clone
 ```bash
 git clone -b v2.5.0 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
+- [TensorFlow v2.5.0 issue fixes](https://github.com/tensorflow/tensorflow/pull/49199) + [XNNPACK's multi-threaded execution custom](https://github.com/NobuoTsukamoto/tensorflow/commit/f6f106380ac86ccf61ea9b01395f2911c4a6403c)
+```
+### Download the patch file
+### https://github.com/NobuoTsukamoto/tensorflow/commit/f6f106380ac86ccf61ea9b01395f2911c4a6403c.patch
+### Thank you very much NobuoTsukamoto!!
 
+sudo gdown --id 1XgK062LffDzHfdEqABw1zXs5gAJlapAA
+patch -p1 < xnnpack_multi_threads.patch
+```
+- Added FlexDelegate and XNNPACK as build options.
 ```bash
 nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
 
@@ -147,17 +157,7 @@ case "${TENSORFLOW_TARGET}" in
     ;;
 esac
 ```
-
-- TensorFlow v2.5.0 issue
-https://github.com/tensorflow/tensorflow/pull/49199
-- tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
-```
-cp "${TENSORFLOW_LITE_DIR}/python/interpreter.py" \
-   "${TENSORFLOW_LITE_DIR}/python/metrics_interface.py" \
-   "${TENSORFLOW_LITE_DIR}/python/metrics_portable.py" \
-   "${BUILD_DIR}/tflite_runtime"
-```
-
+- Build
 ```bash
 ### Python 3.7
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.7 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
