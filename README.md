@@ -97,6 +97,13 @@ cd tensorflow
 sudo gdown --id 1XgK062LffDzHfdEqABw1zXs5gAJlapAA
 patch -p1 < xnnpack_multi_threads.patch
 ```
+- Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias)
+```
+cd tensorflow/lite/kernels
+sudo gdown --id 1fuB2m7B_-3u7-kxuNcALUp9wkrHsfCQB
+tar -zxvf kernels.tar.gz && rm kernels.tar.gz -f
+cd ../../..
+```
 - Added FlexDelegate and XNNPACK as build options.
 ```bash
 nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
