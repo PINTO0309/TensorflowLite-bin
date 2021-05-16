@@ -264,7 +264,6 @@ if __name__ == "__main__":
   ### Tensorflow -v2.2.0
   #interpreter.set_num_threads(int(args.num_threads)) #<- Specifies the num of threads assigned to inference
   ### Tensorflow v2.3.0+
-  interpreter.set_num_threads(int(args.num_threads))
   interpreter.set_tensor(input_details[0]['index'], input_data)
 
   start_time = time.time()
