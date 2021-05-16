@@ -88,7 +88,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 git clone -b v2.5.0 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
-- [TensorFlow v2.5.0 issue fixes](https://github.com/tensorflow/tensorflow/pull/49199) + [XNNPACK's multi-threaded execution custom](https://github.com/NobuoTsukamoto/tensorflow/commit/f6f106380ac86ccf61ea9b01395f2911c4a6403c)
+- [TensorFlow v2.5.0 issue fixes](https://github.com/tensorflow/tensorflow/pull/49199) + [XNNPACK's multi-threaded execution custom](https://github.com/NobuoTsukamoto/tensorflow/commit/f6f106380ac86ccf61ea9b01395f2911c4a6403c) ([NobuoTsukamoto's bio](https://github.com/NobuoTsukamoto))
 ```
 ### Download the patch file
 ### https://github.com/NobuoTsukamoto/tensorflow/commit/f6f106380ac86ccf61ea9b01395f2911c4a6403c.patch
