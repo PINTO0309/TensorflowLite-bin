@@ -83,25 +83,27 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
 ```bash
-git clone -b v2.5.0 https://github.com/tensorflow/tensorflow.git
+git clone -b v2.6.0-rc1 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
-```
-- [TensorFlow v2.5.0 issue fixes](https://github.com/tensorflow/tensorflow/pull/49199) + [XNNPACK's multi-threaded execution custom](https://github.com/NobuoTsukamoto/tensorflow/commit/f6f106380ac86ccf61ea9b01395f2911c4a6403c) ([NobuoTsukamoto's bio](https://github.com/NobuoTsukamoto))
-```
-### Download the patch file
-### https://github.com/NobuoTsukamoto/tensorflow/commit/f6f106380ac86ccf61ea9b01395f2911c4a6403c.patch
-### Thank you very much NobuoTsukamoto!!
-
-sudo gdown --id 1XgK062LffDzHfdEqABw1zXs5gAJlapAA
-patch -p1 < xnnpack_multi_threads.patch
 ```
 - Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias)
 ```
 cd tensorflow/lite/kernels
-sudo gdown --id 1fuB2m7B_-3u7-kxuNcALUp9wkrHsfCQB
+sudo gdown --id 124YrrMZjj_lZxVnpxePs-F69i0xz7Qru
 tar -zxvf kernels.tar.gz && rm kernels.tar.gz -f
 cd ../../..
 ```
+- Apply multi-threading support for XNNPACK.
+```
+cd tensorflow/lite/python
+sudo gdown --id 1LuEW11VLhR4gO1RPlymELDvXBFqU7WSK
+cd ../../..
+cd tensorflow/lite/python/interpreter_wrapper
+sudo gdown --id 1zTO0z6Pe_a6RJxw7N_3gyqhFxGunFK-y
+tar -zxvf interpreter_wrapper.tar.gz && rm interpreter_wrapper.tar.gz -f
+cd ../../..
+```
+
 - Added FlexDelegate and XNNPACK as build options.
 ```bash
 nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
