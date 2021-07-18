@@ -95,9 +95,11 @@ cd ../../..
 ```
 - Apply multi-threading support for XNNPACK.
 ```
+# interpreter.py
 cd tensorflow/lite/python
 sudo gdown --id 1LuEW11VLhR4gO1RPlymELDvXBFqU7WSK
 cd ../../..
+# interpreter_wrapper.cc, interpreter_wrapper.h, interpreter_wrapper_pybind11.cc
 cd tensorflow/lite/python/interpreter_wrapper
 sudo gdown --id 1zTO0z6Pe_a6RJxw7N_3gyqhFxGunFK-y
 tar -zxvf interpreter_wrapper.tar.gz && rm interpreter_wrapper.tar.gz -f
