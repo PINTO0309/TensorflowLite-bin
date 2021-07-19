@@ -103,7 +103,7 @@ cd ../../..
 cd tensorflow/lite/python/interpreter_wrapper
 sudo gdown --id 1zTO0z6Pe_a6RJxw7N_3gyqhFxGunFK-y
 tar -zxvf interpreter_wrapper.tar.gz && rm interpreter_wrapper.tar.gz -f
-cd ../../..
+cd ../../../..
 ```
 
 - Added FlexDelegate and XNNPACK as build options.
