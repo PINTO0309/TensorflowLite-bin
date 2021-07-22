@@ -83,7 +83,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
 ```bash
-git clone -b r2.6 https://github.com/tensorflow/tensorflow.git
+git clone -b v2.6.0-rc1 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
 - Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias)
@@ -166,7 +166,7 @@ case "${TENSORFLOW_TARGET}" in
     ;;
 esac
 ```
-- Fix issue #50826. [Cross-compilation error by Bazel in pip_package of TensorFlow Lite in r2.6 or v2.6.0-rc1 (armhf/aarch64)](https://github.com/tensorflow/tensorflow/issues/50826) 
+- Fix issue #50826. [Cross-compilation error by Bazel in pip_package of TensorFlow Lite in r2.6 or v2.6.0-rc1 (armhf/aarch64)](https://github.com/tensorflow/tensorflow/issues/50826)
 ```
 nano .bazelrc
 
