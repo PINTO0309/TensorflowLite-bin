@@ -168,7 +168,7 @@ esac
 ```
 - Fix issue #50826. [Cross-compilation error by Bazel in pip_package of TensorFlow Lite in r2.6 or v2.6.0-rc1 (armhf/aarch64)](https://github.com/tensorflow/tensorflow/issues/50826) 
 ```
-nano tensorflow/.bazelrc
+nano .bazelrc
 
 # TFLite build configs for generic embedded Linux
 build:elinux --crosstool_top=@local_config_embedded_arm//:toolchain
