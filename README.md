@@ -166,6 +166,30 @@ case "${TENSORFLOW_TARGET}" in
     ;;
 esac
 ```
+- Fix issue #50826. [Cross-compilation error by Bazel in pip_package of TensorFlow Lite in r2.6 or v2.6.0-rc1 (armhf/aarch64)](https://github.com/tensorflow/tensorflow/issues/50826) 
+```
+nano tensorflow/.bazelrc
+
+# TFLite build configs for generic embedded Linux
+build:elinux --crosstool_top=@local_config_embedded_arm//:toolchain
+build:elinux --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
+build:elinux_aarch64 --config=elinux
+build:elinux_aarch64 --cpu=aarch64
+build:elinux_armhf --config=elinux
+build:elinux_armhf --cpu=armhf
+
+↓
+
+# TFLite build configs for generic embedded Linux
+build:elinux --crosstool_top=@local_config_embedded_arm//:toolchain
+build:elinux --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
+build:elinux_aarch64 --config=elinux
+build:elinux_aarch64 --cpu=aarch64
+build:elinux_aarch64 --distinct_host_configuration=true
+build:elinux_armhf --config=elinux
+build:elinux_armhf --cpu=armhf
+build:elinux_armhf --distinct_host_configuration=true
+```
 - Build
 ```bash
 ### Python 3.7
