@@ -190,7 +190,7 @@ build:elinux_armhf --config=elinux
 build:elinux_armhf --cpu=armhf
 build:elinux_armhf --distinct_host_configuration=true
 ```
-- Fix XNNPACK build errors in armhf (Only do this when building with armhf) [#50920](https://github.com/tensorflow/tensorflow/issues/50920)
+- Fix XNNPACK build errors [#50920](https://github.com/tensorflow/tensorflow/issues/50920).
 ```bzl
 nano tensorflow/workspace2.bzl
 
