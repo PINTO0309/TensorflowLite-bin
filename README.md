@@ -190,6 +190,32 @@ build:elinux_armhf --config=elinux
 build:elinux_armhf --cpu=armhf
 build:elinux_armhf --distinct_host_configuration=true
 ```
+- Fix XNNPACK build errors in armhf (Only do this when building with armhf)
+```bzl
+nano tensorflow/workspace2.bzl
+
+    tf_http_archive(
+        name = "XNNPACK",
+        sha256 = "7320355409ae5dd2c8600cafbd07b56c379cd13666a7c971ffd3a01025c0f63e",
+        strip_prefix = "XNNPACK-56b78a03e359ac04a3ba758596cd28b198a8000f",
+        urls = [
+            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/XNNPACK/archive/56b78a03e359ac04a3ba758596cd28b198a8000f.zip",
+            "https://github.com/google/XNNPACK/archive/56b78a03e359ac04a3ba758596cd28b198a8000f.zip",
+        ],
+    )
+↓
+    tf_http_archive(
+        name = "XNNPACK",
+        sha256 = "8af68e922753ae7a66cc72f2484fbda7072b2a590e8260816fe66cc666d02dcf",
+        strip_prefix = "XNNPACK-2bb448ce3dee23bd9b0535a778a4a30eb2b60605",
+        urls = [
+            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/XNNPACK/archive/2bb448ce3dee23bd9b0535a778a4a30eb2b60605.zip",
+            "https://github.com/google/XNNPACK/archive/2bb448ce3dee23bd9b0535a778a4a30eb2b60605.zip",
+        ],
+    )
+```
+
+
 - Build
 ```bash
 ### Python 3.7
