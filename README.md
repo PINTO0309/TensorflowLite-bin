@@ -206,11 +206,11 @@ nano tensorflow/workspace2.bzl
 ↓
     tf_http_archive(
         name = "XNNPACK",
-        sha256 = "8af68e922753ae7a66cc72f2484fbda7072b2a590e8260816fe66cc666d02dcf",
-        strip_prefix = "XNNPACK-2bb448ce3dee23bd9b0535a778a4a30eb2b60605",
+        sha256 = "e1fee5a16e4a06d3bd77ab33cf87b1c6d826715906248a308ab790486198d3c9",
+        strip_prefix = "XNNPACK-476eb84d6a8e6f8249d5584d30759c6fbdbf791d",
         urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/XNNPACK/archive/2bb448ce3dee23bd9b0535a778a4a30eb2b60605.zip",
-            "https://github.com/google/XNNPACK/archive/2bb448ce3dee23bd9b0535a778a4a30eb2b60605.zip",
+            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/XNNPACK/archive/476eb84d6a8e6f8249d5584d30759c6fbdbf791d.zip",
+            "https://github.com/google/XNNPACK/archive/476eb84d6a8e6f8249d5584d30759c6fbdbf791d.zip",
         ],
     )
 ```
