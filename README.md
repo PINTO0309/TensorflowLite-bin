@@ -214,8 +214,25 @@ nano tensorflow/workspace2.bzl
         ],
     )
 ```
+```cmake
+nano tensorflow/lite/tools/cmake/modules/xnnpack.cmake
 
-
+  xnnpack
+  GIT_REPOSITORY https://github.com/google/XNNPACK
+  # Sync with tensorflow/workspace2.bzl
+  GIT_TAG 56b78a03e359ac04a3ba758596cd28b198a8000f
+  GIT_PROGRESS TRUE
+  PREFIX "${CMAKE_BINARY_DIR}"
+  SOURCE_DIR "${CMAKE_BINARY_DIR}/xnnpack"
+↓
+  xnnpack
+  GIT_REPOSITORY https://github.com/google/XNNPACK
+  # Sync with tensorflow/workspace2.bzl
+  GIT_TAG 476eb84d6a8e6f8249d5584d30759c6fbdbf791d
+  GIT_PROGRESS TRUE
+  PREFIX "${CMAKE_BINARY_DIR}"
+  SOURCE_DIR "${CMAKE_BINARY_DIR}/xnnpack"
+```
 - Build
 ```bash
 ### Python 3.7
