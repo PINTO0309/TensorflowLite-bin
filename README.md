@@ -83,7 +83,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
 ```bash
-git clone -b v2.6.0-rc1 https://github.com/tensorflow/tensorflow.git
+git clone -b v2.6.0 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
 - Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias)
@@ -165,73 +165,6 @@ case "${TENSORFLOW_TARGET}" in
       --define=tflite_with_xnnpack=true"
     ;;
 esac
-```
-- Fix issue #50826. [Cross-compilation error by Bazel in pip_package of TensorFlow Lite in r2.6 or v2.6.0-rc1 (armhf/aarch64)](https://github.com/tensorflow/tensorflow/issues/50826)
-```
-nano .bazelrc
-
-# TFLite build configs for generic embedded Linux
-build:elinux --crosstool_top=@local_config_embedded_arm//:toolchain
-build:elinux --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
-build:elinux_aarch64 --config=elinux
-build:elinux_aarch64 --cpu=aarch64
-build:elinux_armhf --config=elinux
-build:elinux_armhf --cpu=armhf
-
-↓
-
-# TFLite build configs for generic embedded Linux
-build:elinux --crosstool_top=@local_config_embedded_arm//:toolchain
-build:elinux --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
-build:elinux_aarch64 --config=elinux
-build:elinux_aarch64 --cpu=aarch64
-build:elinux_aarch64 --distinct_host_configuration=true
-build:elinux_armhf --config=elinux
-build:elinux_armhf --cpu=armhf
-build:elinux_armhf --distinct_host_configuration=true
-```
-- Fix XNNPACK build errors [#50920](https://github.com/tensorflow/tensorflow/issues/50920).
-```bzl
-nano tensorflow/workspace2.bzl
-
-    tf_http_archive(
-        name = "XNNPACK",
-        sha256 = "7320355409ae5dd2c8600cafbd07b56c379cd13666a7c971ffd3a01025c0f63e",
-        strip_prefix = "XNNPACK-56b78a03e359ac04a3ba758596cd28b198a8000f",
-        urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/XNNPACK/archive/56b78a03e359ac04a3ba758596cd28b198a8000f.zip",
-            "https://github.com/google/XNNPACK/archive/56b78a03e359ac04a3ba758596cd28b198a8000f.zip",
-        ],
-    )
-↓
-    tf_http_archive(
-        name = "XNNPACK",
-        sha256 = "e1fee5a16e4a06d3bd77ab33cf87b1c6d826715906248a308ab790486198d3c9",
-        strip_prefix = "XNNPACK-476eb84d6a8e6f8249d5584d30759c6fbdbf791d",
-        urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/XNNPACK/archive/476eb84d6a8e6f8249d5584d30759c6fbdbf791d.zip",
-            "https://github.com/google/XNNPACK/archive/476eb84d6a8e6f8249d5584d30759c6fbdbf791d.zip",
-        ],
-    )
-```
-```cmake
-nano tensorflow/lite/tools/cmake/modules/xnnpack.cmake
-
-  xnnpack
-  GIT_REPOSITORY https://github.com/google/XNNPACK
-  # Sync with tensorflow/workspace2.bzl
-  GIT_TAG 56b78a03e359ac04a3ba758596cd28b198a8000f
-  GIT_PROGRESS TRUE
-  PREFIX "${CMAKE_BINARY_DIR}"
-  SOURCE_DIR "${CMAKE_BINARY_DIR}/xnnpack"
-↓
-  xnnpack
-  GIT_REPOSITORY https://github.com/google/XNNPACK
-  # Sync with tensorflow/workspace2.bzl
-  GIT_TAG 476eb84d6a8e6f8249d5584d30759c6fbdbf791d
-  GIT_PROGRESS TRUE
-  PREFIX "${CMAKE_BINARY_DIR}"
-  SOURCE_DIR "${CMAKE_BINARY_DIR}/xnnpack"
 ```
 - Build
 ```bash
