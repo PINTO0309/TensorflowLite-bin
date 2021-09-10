@@ -245,9 +245,6 @@ if __name__ == "__main__":
   parser.add_argument("--num_threads", default=1, help="number of threads")
   args = parser.parse_args()
 
-  ### Tensorflow -v2.2.0
-  #interpreter = Interpreter(model_path=args.model_file)
-  ### Tensorflow v2.3.0+
   interpreter = Interpreter(model_path="foo.tflite", num_threads=args.num_threads)
   interpreter.allocate_tensors()
   input_details = interpreter.get_input_details()
@@ -265,9 +262,6 @@ if __name__ == "__main__":
   if floating_model:
     input_data = (np.float32(input_data) - args.input_mean) / args.input_std
 
-  ### Tensorflow -v2.2.0
-  #interpreter.set_num_threads(int(args.num_threads)) #<- Specifies the num of threads assigned to inference
-  ### Tensorflow v2.3.0+
   interpreter.set_tensor(input_details[0]['index'], input_data)
 
   start_time = time.time()
