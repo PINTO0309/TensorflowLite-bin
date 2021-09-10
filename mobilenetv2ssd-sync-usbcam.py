@@ -44,11 +44,9 @@ LABELS = [
 class ObjectDetectorLite():
     def __init__(self, model_path='detect.tflite', num_threads=12):
         try:
-            self.interpreter = Interpreter(model_path=model_path)
-            self.interpreter.set_num_threads(num_threads)
+            self.interpreter = Interpreter(model_path=model_path, num_threads=num_threads)
         except:
-            self.interpreter = tf.lite.Interpreter(model_path=model_path)
-            self.interpreter.set_num_threads(num_threads)
+            self.interpreter = tf.lite.Interpreter(model_path=model_path, num_threads=num_threads)
         self.interpreter.allocate_tensors()
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
