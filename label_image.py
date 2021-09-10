@@ -28,7 +28,7 @@ if __name__ == "__main__":
   parser.add_argument("--num_threads", default=1, help="number of threads")
   args = parser.parse_args()
 
-  interpreter = Interpreter(model_path=args.model_file)
+  interpreter = Interpreter(model_path=args.model_file, num_threads=args.num_threads)
   interpreter.allocate_tensors()
   input_details = interpreter.get_input_details()
   output_details = interpreter.get_output_details()
