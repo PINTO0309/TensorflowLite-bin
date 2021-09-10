@@ -248,7 +248,7 @@ if __name__ == "__main__":
   ### Tensorflow -v2.2.0
   #interpreter = Interpreter(model_path=args.model_file)
   ### Tensorflow v2.3.0+
-  interpreter = Interpreter(model_path="foo.tflite", num_threads=4)
+  interpreter = Interpreter(model_path="foo.tflite", num_threads=args.num_threads)
   interpreter.allocate_tensors()
   input_details = interpreter.get_input_details()
   output_details = interpreter.get_output_details()
