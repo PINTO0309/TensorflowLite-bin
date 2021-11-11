@@ -190,15 +190,6 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.9 -e CROSSTOOL_PYTHON_IN
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.9 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.9" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON39 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
-
-### Python 3.5
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.5 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
-
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.5 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.5" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 ```
 ## Operation check 【Classification】
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**
