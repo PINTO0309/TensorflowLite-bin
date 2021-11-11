@@ -85,27 +85,21 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
 ```bash
-git clone -b v2.6.0 https://github.com/tensorflow/tensorflow.git
+git clone -b v2.7.0 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
 - Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias)
 ```
 cd tensorflow/lite/kernels
-sudo gdown --id 124YrrMZjj_lZxVnpxePs-F69i0xz7Qru
+sudo gdown --id 1Az4hEvLXAb71e52gBORQz87Z0FExUz2B
 tar -zxvf kernels.tar.gz && rm kernels.tar.gz -f
 cd ../../..
 ```
-- Apply multi-threading support for XNNPACK.
+- Apply multi-threading support for XNNPACK (Python).
 ```
-# interpreter.py
-cd tensorflow/lite/python
-sudo gdown --id 1LuEW11VLhR4gO1RPlymELDvXBFqU7WSK
-cd ../../..
-# interpreter_wrapper.cc, interpreter_wrapper.h, interpreter_wrapper_pybind11.cc
-cd tensorflow/lite/python/interpreter_wrapper
-sudo gdown --id 1zTO0z6Pe_a6RJxw7N_3gyqhFxGunFK-y
-tar -zxvf interpreter_wrapper.tar.gz && rm interpreter_wrapper.tar.gz -f
-cd ../../../..
+# interpreter_wrapper.cc
+sudo gdown --id 1iNc8qC1y5CJdMWCcTXhl6SiDQg3M1DRv
+git apply xnnpack_python.patch
 ```
 
 - Added FlexDelegate and XNNPACK as build options.
