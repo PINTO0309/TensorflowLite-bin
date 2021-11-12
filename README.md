@@ -55,10 +55,10 @@ $ sudo pip3 install --upgrade tflite_runtime-2.2.0-cp35-cp35m-linux_armv7l.whl
 ```bash
 $ sudo apt install swig libjpeg-dev zlib1g-dev python3-dev \
                    unzip wget python3-pip curl git cmake make
-$ sudo pip3 install numpy==1.20.3
-$ wget "https://raw.githubusercontent.com/PINTO0309/TensorflowLite-bin/main/2.5.0/download_tflite_runtime-2.5.0-cp37-none-linux_armv7l.whl.sh"
-$ ./download_tflite_runtime-2.5.0-cp37-none-linux_armv7l.whl.sh
-$ sudo pip3 install --upgrade tflite_runtime-2.5.0-cp37-none-linux_armv7l.whl
+$ sudo pip3 install numpy==1.21.4
+$ wget "https://raw.githubusercontent.com/PINTO0309/TensorflowLite-bin/main/2.7.0/download_tflite_runtime-2.7.0-cp37-none-linux_armv7l.whl.sh"
+$ ./download_tflite_runtime-2.7.0-cp37-none-linux_armv7l.whl.sh
+$ sudo pip3 install --upgrade tflite_runtime-2.7.0-cp37-none-linux_armv7l.whl
 ```
 
 ## Note
