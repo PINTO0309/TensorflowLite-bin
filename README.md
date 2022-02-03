@@ -108,6 +108,17 @@ git apply xnnpack_python.patch
 ```bash
 nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
 
+  if [ "${TENSORFLOW_TARGET}" = "armhf" ]; then
+    sudo sed -i 's/define CURL_SIZEOF_LONG 8/define CURL_SIZEOF_LONG 4/g' /usr/include/curl/curlbuild.h
+    sudo sed -i 's/define CURL_SIZEOF_CURL_OFF_T 8/define CURL_SIZEOF_CURL_OFF_T 4/g' /usr/include/curl/curlbuild.h
+  fi
+↓
+  #if [ "${TENSORFLOW_TARGET}" = "armhf" ]; then
+  #  sudo sed -i 's/define CURL_SIZEOF_LONG 8/define CURL_SIZEOF_LONG 4/g' /usr/include/curl/curlbuild.h
+  #  sudo sed -i 's/define CURL_SIZEOF_CURL_OFF_T 8/define CURL_SIZEOF_CURL_OFF_T 4/g' /usr/include/curl/curlbuild.h
+  #fi
+
+
 # Build python interpreter_wrapper.
 cd "${BUILD_DIR}"
 case "${TENSORFLOW_TARGET}" in
