@@ -29,7 +29,10 @@ if __name__ == "__main__":
   args = parser.parse_args()
 
   interpreter = Interpreter(model_path=args.model_file, num_threads=args.num_threads)
-  interpreter.allocate_tensors()
+  try:
+    interpreter.allocate_tensors()
+  except:
+    pass
   input_details = interpreter.get_input_details()
   output_details = interpreter.get_output_details()
   # check the type of the input tensor
