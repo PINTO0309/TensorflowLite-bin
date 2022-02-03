@@ -143,7 +143,7 @@ case "${TENSORFLOW_TARGET}" in
       --define tensorflow_mkldnn_contraction_kernel=0
       --define=raspberry_pi_with_neon=true
       --define=tflite_pip_with_flex=true
-      --define=tflite_with_xnnpack=true"
+      --define=tflite_with_xnnpack=false"
     ;;
   aarch64)
     BAZEL_FLAGS="--config=elinux_aarch64
