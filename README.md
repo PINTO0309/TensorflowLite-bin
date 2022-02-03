@@ -85,7 +85,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
 ```bash
-git clone -b v2.7.0 https://github.com/tensorflow/tensorflow.git
+git clone -b v2.8.0 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
 - Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias)
