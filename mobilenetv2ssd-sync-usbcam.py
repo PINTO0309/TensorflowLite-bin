@@ -47,7 +47,10 @@ class ObjectDetectorLite():
             self.interpreter = Interpreter(model_path=model_path, num_threads=num_threads)
         except:
             self.interpreter = tf.lite.Interpreter(model_path=model_path, num_threads=num_threads)
-        self.interpreter.allocate_tensors()
+        try:
+            self.interpreter.allocate_tensors()
+        except:
+            pass
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
 
