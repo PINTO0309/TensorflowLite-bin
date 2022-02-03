@@ -93,15 +93,9 @@ cd tensorflow
 - Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias)
 ```
 cd tensorflow/lite/kernels
-sudo gdown --id 1Az4hEvLXAb71e52gBORQz87Z0FExUz2B
+sudo gdown --id 1qTVQ9qnbvzxxWm-1mGGkO7NRB9Rd_Uht
 tar -zxvf kernels.tar.gz && rm kernels.tar.gz -f
 cd ../../..
-```
-- Apply multi-threading support for XNNPACK (Python).
-```
-# interpreter_wrapper.cc
-sudo gdown --id 1iNc8qC1y5CJdMWCcTXhl6SiDQg3M1DRv
-git apply xnnpack_python.patch
 ```
 
 - Added FlexDelegate and XNNPACK as build options.
