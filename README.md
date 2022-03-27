@@ -245,20 +245,45 @@ def load_labels(filename):
 if __name__ == "__main__":
   floating_model = False
   parser = argparse.ArgumentParser()
-  parser.add_argument("-i", "--image", default="/tmp/grace_hopper.bmp", \
-    help="image to be classified")
-  parser.add_argument("-m", "--model_file", \
+  parser.add_argument(
+    "-i",
+    "--image",
+    default="/tmp/grace_hopper.bmp", \
+    help="image to be classified"
+  )
+  parser.add_argument(
+    "-m",
+    "--model_file", \
     default="/tmp/mobilenet_v1_1.0_224_quant.tflite", \
-    help=".tflite model to be executed")
-  parser.add_argument("-l", "--label_file", default="/tmp/labels.txt", \
-    help="name of file containing labels")
-  parser.add_argument("--input_mean", default=127.5, help="input_mean")
-  parser.add_argument("--input_std", default=127.5, \
-    help="input standard deviation")
-  parser.add_argument("--num_threads", default=1, help="number of threads")
+    help=".tflite model to be executed"
+  )
+  parser.add_argument(
+    "-l",
+    "--label_file",
+    default="/tmp/labels.txt", \
+    help="name of file containing labels"
+  )
+  parser.add_argument(
+    "--input_mean",
+    default=127.5,
+    help="input_mean"
+  )
+  parser.add_argument(
+    "--input_std",
+    default=127.5, \
+    help="input standard deviation"
+  )
+  parser.add_argument(
+    "--num_threads",
+    default=1,
+    help="number of threads"
+  )
   args = parser.parse_args()
 
-  interpreter = Interpreter(model_path="foo.tflite", num_threads=args.num_threads)
+  interpreter = Interpreter(
+    model_path="foo.tflite",
+    num_threads=args.num_threads
+  )
   try:
     interpreter.allocate_tensors()
   except:
