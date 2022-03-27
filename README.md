@@ -260,7 +260,7 @@ if __name__ == "__main__":
 
   interpreter = Interpreter(model_path="foo.tflite", num_threads=args.num_threads)
   try:
-    interpreter.allocate_tensors()  
+    interpreter.allocate_tensors()
   except:
     pass
   input_details = interpreter.get_input_details()
