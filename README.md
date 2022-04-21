@@ -89,31 +89,28 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
 ```bash
-git clone -b v2.8.0 https://github.com/tensorflow/tensorflow.git
+git clone -b v2.9.0 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
-- Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias)
+- Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias, TransformLandmarks, TransformTensorBilinear, Landmarks2TransformMatrix)
 ```
-cd tensorflow/lite/kernels
-sudo gdown --id 1qTVQ9qnbvzxxWm-1mGGkO7NRB9Rd_Uht
-tar -zxvf kernels.tar.gz && rm kernels.tar.gz -f
-cd ../../..
+curl -L -o tensorflow/tools/ci_build/Dockerfile.pi-python37 \
+https://github.com/tensorflow/tensorflow/raw/v2.8.0/tensorflow/tools/ci_build/Dockerfile.pi-python37
+
+curl -L -o tensorflow/tools/ci_build/Dockerfile.pi-python38 \
+https://github.com/tensorflow/tensorflow/raw/v2.8.0/tensorflow/tools/ci_build/Dockerfile.pi-python38
+
+curl -L -o tensorflow/tools/ci_build/Dockerfile.pi-python39 \
+https://github.com/tensorflow/tensorflow/raw/v2.8.0/tensorflow/tools/ci_build/Dockerfile.pi-python39
+
+curl -OL https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v2.9.0-rc0/mediapipe_customop_patch.zip
+unzip -d mediapipe_customop_patch mediapipe_customop_patch.zip
+git apply mediapipe_customop_patch/*
 ```
 
 - Added FlexDelegate and XNNPACK as build options.
 ```bash
 nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
-
-  if [ "${TENSORFLOW_TARGET}" = "armhf" ]; then
-    sudo sed -i 's/define CURL_SIZEOF_LONG 8/define CURL_SIZEOF_LONG 4/g' /usr/include/curl/curlbuild.h
-    sudo sed -i 's/define CURL_SIZEOF_CURL_OFF_T 8/define CURL_SIZEOF_CURL_OFF_T 4/g' /usr/include/curl/curlbuild.h
-  fi
-↓
-  #if [ "${TENSORFLOW_TARGET}" = "armhf" ]; then
-  #  sudo sed -i 's/define CURL_SIZEOF_LONG 8/define CURL_SIZEOF_LONG 4/g' /usr/include/curl/curlbuild.h
-  #  sudo sed -i 's/define CURL_SIZEOF_CURL_OFF_T 8/define CURL_SIZEOF_CURL_OFF_T 4/g' /usr/include/curl/curlbuild.h
-  #fi
-
 
 # Build python interpreter_wrapper.
 cd "${BUILD_DIR}"
