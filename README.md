@@ -178,16 +178,10 @@ sed -i '5a ENV DEBIAN_FRONTEND=noninteractive' tensorflow/tools/ci_build/Dockerf
 sed -i '30a apt-get update && apt-get install -y dirmngr' tensorflow/tools/ci_build/install/install_deb_packages.sh
 sed -i -e 's/xenial/bionic/g' tensorflow/tools/ci_build/install/install_pi_python3x_toolchain.sh
 
-### Python 3.7 - TensorFlow v2.10.0 or later will not build.
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.7 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
-
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.7 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.7" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON37 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
-
 ### Python 3.8
+sed -i '19a sudo pip3 install setuptools==60.7.0' tensorflow/tools/ci_build/install/install_auditwheel.sh
+sed -i '20a sudo pip3 install numpy==1.23.2' tensorflow/tools/ci_build/install/install_auditwheel.sh
+
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.8 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
@@ -198,7 +192,7 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.8 -e CROSSTOOL_PYTHON_IN
 
 ### Python 3.9
 sed -i '19a sudo pip3 install setuptools==60.7.0' tensorflow/tools/ci_build/install/install_auditwheel.sh
-sed -i '20a sudo pip3 install numpy==1.22.3' tensorflow/tools/ci_build/install/install_auditwheel.sh
+sed -i '20a sudo pip3 install numpy==1.23.2' tensorflow/tools/ci_build/install/install_auditwheel.sh
 
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.9 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.9" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON39 \
@@ -213,7 +207,7 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.9 -e CROSSTOOL_PYTHON_IN
 cp tensorflow/tools/ci_build/Dockerfile.pi-python39 tensorflow/tools/ci_build/Dockerfile.pi-python310
 sed -i -e 's/3.9/3.10/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
 sed -i '19a sudo pip3 install setuptools==60.7.0' tensorflow/tools/ci_build/install/install_auditwheel.sh
-sed -i '20a sudo pip3 install numpy==1.22.3' tensorflow/tools/ci_build/install/install_auditwheel.sh
+sed -i '20a sudo pip3 install numpy==1.23.2' tensorflow/tools/ci_build/install/install_auditwheel.sh
 
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.10" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON310 \
@@ -223,7 +217,7 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_I
 cp tensorflow/tools/ci_build/Dockerfile.pi-python39 tensorflow/tools/ci_build/Dockerfile.pi-python310
 sed -i -e 's/3.9/3.10/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
 sed -i '19a sudo pip3 install setuptools==60.7.0' tensorflow/tools/ci_build/install/install_auditwheel.sh
-sed -i '20a sudo pip3 install numpy==1.22.3' tensorflow/tools/ci_build/install/install_auditwheel.sh
+sed -i '20a sudo pip3 install numpy==1.23.2' tensorflow/tools/ci_build/install/install_auditwheel.sh
 sed -i -e 's/FROM ubuntu:18.04/FROM ubuntu:20.04/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
 
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.10" \
