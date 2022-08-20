@@ -52,8 +52,8 @@ $ sudo apt install -y \
 swig libjpeg-dev zlib1g-dev python3-dev \
 unzip wget python3-pip curl git cmake make
 $ sudo pip3 install numpy==1.23.2
-$ curl -OL https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v2.9.0/tflite_runtime-2.9.0-cp39-none-linux_aarch64.whl
-$ sudo pip3 install --upgrade tflite_runtime-2.9.0-cp39-none-linux_aarch64.whl
+$ curl -OL https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v2.10.0-rc1/tflite_runtime-2.10.0rc1-cp39-none-linux_aarch64.whl
+$ sudo pip3 install --upgrade tflite_runtime-2.10.0rc1-cp39-none-linux_aarch64.whl
 ```
 
 ## Note
@@ -80,7 +80,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
 ```bash
-git clone -b v2.9.0 https://github.com/tensorflow/tensorflow.git
+git clone -b v2.10.0-rc1 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
 - Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias, TransformLandmarks, TransformTensorBilinear, Landmarks2TransformMatrix)
