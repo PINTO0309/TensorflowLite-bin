@@ -233,6 +233,11 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_I
 PYVER=`python -c 'import sys; print(".".join(map(str, sys.version_info[0:2])))'`
 PYVER_NODOT=`echo ${PYVER} | tr -d .`
 
+#### Python3.10 only #################################################################################
+cp tensorflow/tools/ci_build/Dockerfile.pi-python39 tensorflow/tools/ci_build/Dockerfile.pi-python310
+sed -i -e 's/3.9/3.10/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
+#### Python3.10 only #################################################################################
+
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python${PYVER} -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python${PYVER}" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON${PYVER_NODOT} \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
