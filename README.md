@@ -183,6 +183,8 @@ sed -i '30a apt-get update && apt-get install -y dirmngr' tensorflow/tools/ci_bu
 sed -i -e 's/xenial/bionic/g' tensorflow/tools/ci_build/install/install_pi_python3x_toolchain.sh
 sed -i '19a sudo pip3 install setuptools==60.7.0' tensorflow/tools/ci_build/install/install_auditwheel.sh
 sed -i '20a sudo pip3 install numpy==1.23.2' tensorflow/tools/ci_build/install/install_auditwheel.sh
+cp tensorflow/tools/ci_build/Dockerfile.pi-python39 tensorflow/tools/ci_build/Dockerfile.pi-python310
+sed -i -e 's/3.9/3.10/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
 
 ### Python 3.8
 #### aarch64
@@ -209,6 +211,7 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.9 -e CROSSTOOL_PYTHON_IN
 ### Python 3.10
 cp tensorflow/tools/ci_build/Dockerfile.pi-python39 tensorflow/tools/ci_build/Dockerfile.pi-python310
 sed -i -e 's/3.9/3.10/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
+
 #### aarch64
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.10" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON310 \
@@ -229,11 +232,6 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_I
 ### Host Native
 PYVER=`python -c 'import sys; print(".".join(map(str, sys.version_info[0:2])))'`
 PYVER_NODOT=`echo ${PYVER} | tr -d .`
-
-#### Python3.10 only #################################################################################
-cp tensorflow/tools/ci_build/Dockerfile.pi-python39 tensorflow/tools/ci_build/Dockerfile.pi-python310
-sed -i -e 's/3.9/3.10/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
-#### Python3.10 only #################################################################################
 
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python${PYVER} -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python${PYVER}" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON${PYVER_NODOT} \
