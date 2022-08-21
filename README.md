@@ -53,15 +53,20 @@ unzip wget python3-pip curl git cmake make
 $ sudo pip3 install numpy==1.23.2
 
 $ TFVER=2.10.0-rc1
+
 $ PYVER=39
 or
 $ PYVER=38
 or
 $ PYVER=310
 
+$ ARCH=aarch64
+or
+$ ARCH=armhf
+
 $ sudo -H pip3 install \
 --no-cache-dir \
-https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v${TFVER}/tflite_runtime-`echo ${TFVER} | tr -d -`-cp${PYVER}-none-linux_aarch64.whl
+https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v${TFVER}/tflite_runtime-`echo ${TFVER} | tr -d -`-cp${PYVER}-none-linux_${ARCH}.whl
 ```
 
 ## Note
