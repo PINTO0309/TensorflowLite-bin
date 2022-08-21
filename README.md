@@ -107,7 +107,8 @@ https://github.com/tensorflow/tensorflow/raw/v2.8.0/tensorflow/tools/ci_build/Do
 curl -L -o tensorflow/tools/ci_build/Dockerfile.pi-python39 \
 https://github.com/tensorflow/tensorflow/raw/v2.8.0/tensorflow/tools/ci_build/Dockerfile.pi-python39
 
-curl -OL https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v2.10.0-rc1/mediapipe_customop_patch.zip
+TFVER=2.10.0-rc1
+curl -OL https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v${TFVER}/mediapipe_customop_patch.zip
 unzip -d mediapipe_customop_patch mediapipe_customop_patch.zip
 git apply mediapipe_customop_patch/*
 ```
