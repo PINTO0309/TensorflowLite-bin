@@ -176,7 +176,6 @@ esac
 - Build
 ```bash
 ### Common task
-sed -i -e 's/FROM ubuntu:16.04/FROM ubuntu:18.04/g' tensorflow/tools/ci_build/Dockerfile.pi-python37
 sed -i -e 's/FROM ubuntu:16.04/FROM ubuntu:18.04/g' tensorflow/tools/ci_build/Dockerfile.pi-python38
 sed -i -e 's/FROM ubuntu:16.04/FROM ubuntu:18.04/g' tensorflow/tools/ci_build/Dockerfile.pi-python39
 sed -i '5a ENV DEBIAN_FRONTEND=noninteractive' tensorflow/tools/ci_build/Dockerfile.pi-python39
@@ -228,6 +227,15 @@ sed -i '64d' tensorflow/tools/ci_build/install/install_deb_packages.sh
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.10" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON310 \
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
+
+
+### Host Native
+PYVER=`python -c 'import sys; print(".".join(map(str, sys.version_info[0:2])))'`
+PYVER_NODOT=`echo ${PYVER} | tr -d .`
+
+sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python${PYVER} -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python${PYVER}" \
+  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON${PYVER_NODOT} \
+  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
 ```
 ## Operation check 【Classification】
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**
