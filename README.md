@@ -220,8 +220,9 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_I
 cp tensorflow/tools/ci_build/Dockerfile.pi-python39 tensorflow/tools/ci_build/Dockerfile.pi-python310
 sed -i -e 's/3.9/3.10/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
 sed -i -e 's/FROM ubuntu:18.04/FROM ubuntu:22.04/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
+##### Delete "add-apt-repository -y ppa:openjdk-r/ppa"
 sed -i -e 's/RUN add-apt-repository/#RUN add-apt-repository/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
-##### Delete python-dev
+##### Delete "python-dev"
 sed -i '64d' tensorflow/tools/ci_build/install/install_deb_packages.sh
 
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.10" \
