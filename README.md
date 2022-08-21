@@ -97,7 +97,7 @@ TFVER=2.10.0-rc1
 git clone -b ${TFVER} https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
-- Apply customization to add custom operations for MediaPipe. (max_pool_argmax, max_unpooling, transpose_conv_bias, TransformLandmarks, TransformTensorBilinear, Landmarks2TransformMatrix)
+- Apply customization to add custom operations for MediaPipe. (`max_pool_argmax`, `max_unpooling`, `transpose_conv_bias`, `TransformLandmarks`, `TransformTensorBilinear`, `Landmarks2TransformMatrix`)
 ```
 curl -L -o tensorflow/tools/ci_build/Dockerfile.pi-python37 \
 https://github.com/tensorflow/tensorflow/raw/v2.8.0/tensorflow/tools/ci_build/Dockerfile.pi-python37
