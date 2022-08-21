@@ -209,9 +209,6 @@ sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.9 -e CROSSTOOL_PYTHON_IN
   tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
 
 ### Python 3.10
-cp tensorflow/tools/ci_build/Dockerfile.pi-python39 tensorflow/tools/ci_build/Dockerfile.pi-python310
-sed -i -e 's/3.9/3.10/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
-
 #### aarch64
 sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.10" \
   tensorflow/tools/ci_build/ci_build.sh PI-PYTHON310 \
