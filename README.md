@@ -93,7 +93,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
 ```bash
-TFVER=2.10.0-rc1
+TFVER=2.10.0
 git clone -b v${TFVER} --depth 1 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
