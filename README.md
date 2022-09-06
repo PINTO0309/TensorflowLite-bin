@@ -94,7 +94,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 - git clone
 ```bash
 TFVER=2.10.0-rc1
-git clone -b ${TFVER} https://github.com/tensorflow/tensorflow.git
+git clone -b v${TFVER} --depth 1 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
 - Apply customization to add custom operations for MediaPipe. (`max_pool_argmax`, `max_unpooling`, `transpose_conv_bias`, `TransformLandmarks`, `TransformTensorBilinear`, `Landmarks2TransformMatrix`)
