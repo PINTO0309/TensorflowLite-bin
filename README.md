@@ -52,7 +52,7 @@ swig libjpeg-dev zlib1g-dev python3-dev \
 unzip wget python3-pip curl git cmake make
 $ sudo pip3 install numpy==1.23.2
 
-$ TFVER=2.10.0-rc1
+$ TFVER=2.10.0
 
 $ PYVER=39
 or
@@ -66,7 +66,7 @@ $ ARCH=armhf
 
 $ sudo -H pip3 install \
 --no-cache-dir \
-https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v${TFVER}/tflite_runtime-`echo ${TFVER} | tr -d -`-cp${PYVER}-none-linux_${ARCH}.whl
+https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v${TFVER}/tflite_runtime-${TFVER/-/}-cp${PYVER}-none-linux_${ARCH}.whl
 ```
 
 ## Note
