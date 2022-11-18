@@ -52,7 +52,7 @@ swig libjpeg-dev zlib1g-dev python3-dev \
 unzip wget python3-pip curl git cmake make
 $ sudo pip3 install numpy==1.23.2
 
-$ TFVER=2.10.0
+$ TFVER=2.11.0
 
 $ PYVER=39
 or
@@ -93,7 +93,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
 ```bash
-TFVER=2.10.0
+TFVER=2.11.0
 git clone -b v${TFVER} --depth 1 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
 ```
