@@ -113,7 +113,7 @@ unzip -d mediapipe_customop_patch mediapipe_customop_patch.zip
 git apply mediapipe_customop_patch/*
 ```
 
-- Added FlexDelegate and XNNPACK as build options. If you want to keep the binary size as small as possible, change `tflite_pip_with_flex` and `tflite_with_xnnpack` to `false` and build.
+- Added FlexDelegate and XNNPACK as build options. If you want to keep the binary size as small as possible, change `tflite_pip_with_flex` and `tflite_with_xnnpack` to `false` and build. The `--copt=-fpermissive` option of armhf is deprecated.
 ```bash
 nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
 
@@ -148,7 +148,7 @@ case "${TENSORFLOW_TARGET}" in
   armhf)
     BAZEL_FLAGS="--config=elinux_armhf
       --copt=-march=armv7-a --copt=-mfpu=neon-vfpv4
-      --copt=-O3 --copt=-fno-tree-pre --copt=-fpermissive
+      --copt=-O3 --copt=-fno-tree-pre
       --define tensorflow_mkldnn_contraction_kernel=0
       --define=raspberry_pi_with_neon=true
       --define=tflite_pip_with_flex=true
