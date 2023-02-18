@@ -137,6 +137,7 @@ interpreter = Interpreter(model_path="foo.tflite", num_threads=4)
         --define=raspberry_pi_with_neon=true
         --define=tflite_pip_with_flex=true
         --define=tflite_with_xnnpack=false
+        --define=tflite_kernel_use_xnnpack=false
         --ui_actions_shown=20"
       ;;
     aarch64)
