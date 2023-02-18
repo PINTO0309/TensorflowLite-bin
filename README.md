@@ -54,7 +54,7 @@ swig libjpeg-dev zlib1g-dev python3-dev \
 unzip wget python3-pip curl git cmake make
 $ sudo pip3 install numpy==1.24.2
 
-$ TFVER=2.11.0
+$ TFVER=2.12.0rc0
 
 $ PYVER=39
 or
