@@ -1,6 +1,6 @@
 # TensorflowLite-bin
 Prebuilt binary for TensorflowLite's standalone installer. For RaspberryPi.
-I provide a **`FlexDelegate`**, **`MediaPipe Custom OP`**, **`XNNPACK`** and **`XNNPACK Multi-Thread PythonAPI`** enabled binary.
+I provide a **`FlexDelegate`**, **`XNNPACK`** enabled binary.
 
 Here is the Tensorflow's official **[README](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/tools/pip_package)**.
 
