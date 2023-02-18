@@ -86,7 +86,7 @@ interpreter = Interpreter(model_path="foo.tflite", num_threads=4)
   git clone -b v${TFVER} --depth 1 https://github.com/tensorflow/tensorflow.git
   cd tensorflow
   ```
-- Adjustment of Dockerfile
+- Adjustment of Dockerfile and Header file
   ```bash
   sed -i -e 's/RUN yes/#RUN yes/g' tensorflow/lite/tools/pip_package/Dockerfile.py3
   sed -i -e 's/RUN pip3 install numpy~=1.19.2/RUN pip3 install numpy==1.24.2/g' tensorflow/lite/tools/pip_package/Dockerfile.py3
