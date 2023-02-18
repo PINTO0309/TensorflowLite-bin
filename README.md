@@ -61,6 +61,8 @@ or
 $ PYVER=38
 or
 $ PYVER=310
+or
+$ PYVER=311
 
 $ ARCH=aarch64
 or
