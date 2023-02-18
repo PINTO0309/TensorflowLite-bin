@@ -92,133 +92,79 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ```
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
-```bash
-TFVER=2.12.0-rc0
-git clone -b v${TFVER} --depth 1 https://github.com/tensorflow/tensorflow.git
-cd tensorflow
-
+  ```bash
+  TFVER=2.12.0-rc0
+  git clone -b v${TFVER} --depth 1 https://github.com/tensorflow/tensorflow.git
+  cd tensorflow
+  ```
 - Added FlexDelegate and XNNPACK as build options. If you want to keep the binary size as small as possible, change `tflite_pip_with_flex` and `tflite_with_xnnpack` to `false` and build. The `--copt=-fpermissive` option of armhf is deprecated.
-```bash
-nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
+  ```bash
+  nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
 
-# Build python interpreter_wrapper.
-cd "${BUILD_DIR}"
-case "${TENSORFLOW_TARGET}" in
-  armhf)
-    BAZEL_FLAGS="--config=elinux_armhf
-      --copt=-march=armv7-a --copt=-mfpu=neon-vfpv4
-      --copt=-O3 --copt=-fno-tree-pre --copt=-fpermissive
-      --define tensorflow_mkldnn_contraction_kernel=0
-      --define=raspberry_pi_with_neon=true"
-    ;;
-  aarch64)
-    BAZEL_FLAGS="--config=elinux_aarch64
-      --define tensorflow_mkldnn_contraction_kernel=0
-      --copt=-O3"
-    ;;
-  native)
-    BAZEL_FLAGS="--copt=-O3 --copt=-march=native"
-    ;;
-  *)
-    BAZEL_FLAGS="--copt=-O3"
-    ;;
-esac
+  # Build python interpreter_wrapper.
+  cd "${BUILD_DIR}"
+  case "${TENSORFLOW_TARGET}" in
+    armhf)
+      BAZEL_FLAGS="--config=elinux_armhf
+        --copt=-march=armv7-a --copt=-mfpu=neon-vfpv4
+        --copt=-O3 --copt=-fno-tree-pre --copt=-fpermissive
+        --define tensorflow_mkldnn_contraction_kernel=0
+        --define=raspberry_pi_with_neon=true"
+      ;;
+    aarch64)
+      BAZEL_FLAGS="--config=elinux_aarch64
+        --define tensorflow_mkldnn_contraction_kernel=0
+        --copt=-O3"
+      ;;
+    native)
+      BAZEL_FLAGS="--copt=-O3 --copt=-march=native"
+      ;;
+    *)
+      BAZEL_FLAGS="--copt=-O3"
+      ;;
+  esac
 
-　↓
+   ↓
 
-# Build python interpreter_wrapper.
-cd "${BUILD_DIR}"
-case "${TENSORFLOW_TARGET}" in
-  armhf)
-    BAZEL_FLAGS="--config=elinux_armhf
-      --copt=-march=armv7-a --copt=-mfpu=neon-vfpv4
-      --copt=-O3 --copt=-fno-tree-pre
-      --define tensorflow_mkldnn_contraction_kernel=0
-      --define=raspberry_pi_with_neon=true
-      --define=tflite_pip_with_flex=true
-      --define=tflite_with_xnnpack=false"
-    ;;
-  aarch64)
-    BAZEL_FLAGS="--config=elinux_aarch64
-      --define tensorflow_mkldnn_contraction_kernel=0
-      --define=tflite_pip_with_flex=true
-      --define=tflite_with_xnnpack=true
-      --copt=-O3"
-    ;;
-  native)
-    BAZEL_FLAGS="--copt=-O3 --copt=-march=native
-      --define=tflite_pip_with_flex=true
-      --define=tflite_with_xnnpack=true"
-    ;;
-  *)
-    BAZEL_FLAGS="--copt=-O3
-      --define=tflite_pip_with_flex=true
-      --define=tflite_with_xnnpack=true"
-    ;;
-esac
-```
+  # Build python interpreter_wrapper.
+  cd "${BUILD_DIR}"
+  case "${TENSORFLOW_TARGET}" in
+    armhf)
+      BAZEL_FLAGS="--config=elinux_armhf
+        --copt=-march=armv7-a --copt=-mfpu=neon-vfpv4
+        --copt=-O3 --copt=-fno-tree-pre
+        --define tensorflow_mkldnn_contraction_kernel=0
+        --define=raspberry_pi_with_neon=true
+        --define=tflite_pip_with_flex=true
+        --define=tflite_with_xnnpack=false"
+      ;;
+    aarch64)
+      BAZEL_FLAGS="--config=elinux_aarch64
+        --define tensorflow_mkldnn_contraction_kernel=0
+        --define=tflite_pip_with_flex=true
+        --define=tflite_with_xnnpack=true
+        --copt=-O3"
+      ;;
+    native)
+      BAZEL_FLAGS="--copt=-O3 --copt=-march=native
+        --define=tflite_pip_with_flex=true
+        --define=tflite_with_xnnpack=true"
+      ;;
+    *)
+      BAZEL_FLAGS="--copt=-O3
+        --define=tflite_pip_with_flex=true
+        --define=tflite_with_xnnpack=true"
+      ;;
+  esac
+  ```
 - Build
-```bash
-### Common task
-sed -i -e 's/FROM ubuntu:16.04/FROM ubuntu:18.04/g' tensorflow/tools/ci_build/Dockerfile.pi-python38
-sed -i -e 's/FROM ubuntu:16.04/FROM ubuntu:18.04/g' tensorflow/tools/ci_build/Dockerfile.pi-python39
-sed -i '5a ENV DEBIAN_FRONTEND=noninteractive' tensorflow/tools/ci_build/Dockerfile.pi-python39
-sed -i '30a apt-get update && apt-get install -y dirmngr' tensorflow/tools/ci_build/install/install_deb_packages.sh
-sed -i -e 's/xenial/bionic/g' tensorflow/tools/ci_build/install/install_pi_python3x_toolchain.sh
-sed -i '19a sudo pip3 install setuptools==60.7.0' tensorflow/tools/ci_build/install/install_auditwheel.sh
-sed -i '20a sudo pip3 install numpy==1.23.4' tensorflow/tools/ci_build/install/install_auditwheel.sh
-sed -i -e 's/5.1.1/5.3.0/g' tensorflow/tools/ci_build/install/install_bazel.sh
-cp tensorflow/tools/ci_build/Dockerfile.pi-python39 tensorflow/tools/ci_build/Dockerfile.pi-python310
-sed -i -e 's/3.9/3.10/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
+  ```bash
+  make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
+  make BASE_IMAGE=debian:bullseye PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
+  make BASE_IMAGE=ubuntu:22.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
+  make BASE_IMAGE=debian:bookworm PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
+  ```
 
-### Python 3.8
-#### aarch64
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.8 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
-
-#### armhf
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.8 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.8" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON38 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
-
-### Python 3.9
-#### aarch64
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.9 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.9" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON39 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
-
-#### armhf
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.9 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.9" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON39 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
-
-### Python 3.10
-#### aarch64
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.10" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON310 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh aarch64
-
-#### armhf
-sed -i -e 's/FROM ubuntu:18.04/FROM ubuntu:22.04/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
-##### Delete "add-apt-repository -y ppa:openjdk-r/ppa"
-sed -i -e 's/RUN add-apt-repository/#RUN add-apt-repository/g' tensorflow/tools/ci_build/Dockerfile.pi-python310
-##### Delete "python-dev"
-sed -i '64d' tensorflow/tools/ci_build/install/install_deb_packages.sh
-
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3.10 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.10" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON310 \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh armhf
-
-
-### Host Native
-PYVER=`python -c 'import sys; print(".".join(map(str, sys.version_info[0:2])))'`
-PYVER_NODOT=`echo ${PYVER} | tr -d .`
-
-sudo CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python${PYVER} -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python${PYVER}" \
-  tensorflow/tools/ci_build/ci_build.sh PI-PYTHON${PYVER_NODOT} \
-  tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
-```
 ## Operation check 【Classification】
 **Sample of MultiThread x4 by Tensorflow Lite [MobileNetV1 / 75ms]**
 ![01](media/01.png)
