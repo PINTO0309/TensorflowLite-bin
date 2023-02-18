@@ -97,6 +97,10 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
   git clone -b v${TFVER} --depth 1 https://github.com/tensorflow/tensorflow.git
   cd tensorflow
   ```
+- Adjustment of Dockerfile
+  ```bash
+  sed -i -e 's/RUN yes/#RUN yes/g' Dockerfile.py3
+  ```
 - Added FlexDelegate and XNNPACK as build options. If you want to keep the binary size as small as possible, change `tflite_pip_with_flex` and `tflite_with_xnnpack` to `false` and build. The `--copt=-fpermissive` option of armhf is deprecated.
   ```bash
   nano tensorflow/lite/tools/pip_package/build_pip_package_with_bazel.sh
