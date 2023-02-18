@@ -167,17 +167,17 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
   ```bash
   cd tensorflow/lite/tools/pip_package
 
-  make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
-  make BASE_IMAGE=debian:bullseye PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
-  make BASE_IMAGE=ubuntu:22.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
-  make BASE_IMAGE=debian:bookworm PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
+  make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 PYTHON_VERSION=3.8 TENSORFLOW_TARGET=aarch64 docker-build
+  make BASE_IMAGE=debian:bullseye PYTHON=python3 PYTHON_VERSION=3.9 TENSORFLOW_TARGET=aarch64 docker-build
+  make BASE_IMAGE=ubuntu:22.04 PYTHON=python3 PYTHON_VERSION=3.10 TENSORFLOW_TARGET=aarch64 docker-build
+  make BASE_IMAGE=debian:bookworm PYTHON=python3 PYTHON_VERSION=3.11 TENSORFLOW_TARGET=aarch64 docker-build
 
-  make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 TENSORFLOW_TARGET=armhf docker-build
-  make BASE_IMAGE=debian:bullseye PYTHON=python3 TENSORFLOW_TARGET=armhf docker-build
-  make BASE_IMAGE=ubuntu:22.04 PYTHON=python3 TENSORFLOW_TARGET=armhf docker-build
-  make BASE_IMAGE=debian:bookworm PYTHON=python3 TENSORFLOW_TARGET=armhf docker-build
+  make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 PYTHON_VERSION=3.8 TENSORFLOW_TARGET=armhf docker-build
+  make BASE_IMAGE=debian:bullseye PYTHON=python3 PYTHON_VERSION=3.9 TENSORFLOW_TARGET=armhf docker-build
+  make BASE_IMAGE=ubuntu:22.04 PYTHON=python3 PYTHON_VERSION=3.10 TENSORFLOW_TARGET=armhf docker-build
+  make BASE_IMAGE=debian:bookworm PYTHON=python3 PYTHON_VERSION=3.11 TENSORFLOW_TARGET=armhf docker-build
 
-  make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 TENSORFLOW_TARGET=native docker-build
+  make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 PYTHON_VERSION=3.8 TENSORFLOW_TARGET=native docker-build
   ```
 
 ## Operation check 【Classification】
