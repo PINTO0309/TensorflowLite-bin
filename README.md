@@ -99,7 +99,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
   ```
 - Adjustment of Dockerfile
   ```bash
-  sed -i -e 's/RUN yes/#RUN yes/g' Dockerfile.py3
+  sed -i -e 's/RUN yes/#RUN yes/g' tensorflow/lite/tools/pip_package/Dockerfile.py3
   ```
 - Added FlexDelegate and XNNPACK as build options. If you want to keep the binary size as small as possible, change `tflite_pip_with_flex` and `tflite_with_xnnpack` to `false` and build. The `--copt=-fpermissive` option of armhf is deprecated.
   ```bash
@@ -163,6 +163,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
   ```
 - Build
   ```bash
+  cd tensorflow/lite/tools/pip_package
   make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
   make BASE_IMAGE=debian:bullseye PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
   make BASE_IMAGE=ubuntu:22.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
