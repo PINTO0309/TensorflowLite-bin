@@ -100,6 +100,7 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 - Adjustment of Dockerfile
   ```bash
   sed -i -e 's/RUN yes/#RUN yes/g' tensorflow/lite/tools/pip_package/Dockerfile.py3
+  sed -i -e 's/RUN pip3 install numpy~=1.19.2/RUN pip3 install numpy==1.24.2/g' tensorflow/lite/tools/pip_package/Dockerfile.py3
   sed -i '47a \      python-is-python3 \\' tensorflow/lite/tools/pip_package/Dockerfile.py3
   sed -i '15a #include <assert.h>' tensorflow/tsl/framework/fixedpoint/MatMatProductAVX2.h
   ```
