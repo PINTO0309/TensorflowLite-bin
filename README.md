@@ -93,25 +93,9 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 ### **2. Tensorflow v2.3.0 version or later**
 - git clone
 ```bash
-TFVER=2.11.0
+TFVER=2.12.0-rc0
 git clone -b v${TFVER} --depth 1 https://github.com/tensorflow/tensorflow.git
 cd tensorflow
-```
-- Apply customization to add custom operations for MediaPipe. (`max_pool_argmax`, `max_unpooling`, `transpose_conv_bias`, `TransformLandmarks`, `TransformTensorBilinear`, `Landmarks2TransformMatrix`)
-```
-curl -L -o tensorflow/tools/ci_build/Dockerfile.pi-python37 \
-https://github.com/tensorflow/tensorflow/raw/v2.8.0/tensorflow/tools/ci_build/Dockerfile.pi-python37
-
-curl -L -o tensorflow/tools/ci_build/Dockerfile.pi-python38 \
-https://github.com/tensorflow/tensorflow/raw/v2.8.0/tensorflow/tools/ci_build/Dockerfile.pi-python38
-
-curl -L -o tensorflow/tools/ci_build/Dockerfile.pi-python39 \
-https://github.com/tensorflow/tensorflow/raw/v2.8.0/tensorflow/tools/ci_build/Dockerfile.pi-python39
-
-curl -OL https://github.com/PINTO0309/TensorflowLite-bin/releases/download/v2.11.0/mediapipe_customop_patch.zip
-unzip -d mediapipe_customop_patch mediapipe_customop_patch.zip
-git apply mediapipe_customop_patch/*
-```
 
 - Added FlexDelegate and XNNPACK as build options. If you want to keep the binary size as small as possible, change `tflite_pip_with_flex` and `tflite_with_xnnpack` to `false` and build. The `--copt=-fpermissive` option of armhf is deprecated.
 ```bash
