@@ -166,11 +166,12 @@ make BASE_IMAGE=ubuntu:18.04 PYTHON=python3 TENSORFLOW_TARGET=rpi BUILD_DEB=y do
 - Build
   ```bash
   cd tensorflow/lite/tools/pip_package
+
   make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
   make BASE_IMAGE=debian:bullseye PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
   make BASE_IMAGE=ubuntu:22.04 PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
   make BASE_IMAGE=debian:bookworm PYTHON=python3 TENSORFLOW_TARGET=aarch64 docker-build
-  
+
   make BASE_IMAGE=ubuntu:20.04 PYTHON=python3 TENSORFLOW_TARGET=native docker-build
   ```
 
