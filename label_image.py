@@ -15,20 +15,18 @@ def load_labels(filename):
 if __name__ == "__main__":
   floating_model = False
   parser = argparse.ArgumentParser()
-  parser.add_argument("-i", "--image", default="/tmp/grace_hopper.bmp", \
-    help="image to be classified")
-  parser.add_argument("-m", "--model_file", \
-    default="/tmp/mobilenet_v1_1.0_224_quant.tflite", \
-    help=".tflite model to be executed")
-  parser.add_argument("-l", "--label_file", default="/tmp/labels.txt", \
-    help="name of file containing labels")
-  parser.add_argument("--input_mean", default=127.5, help="input_mean")
-  parser.add_argument("--input_std", default=127.5, \
-    help="input standard deviation")
-  parser.add_argument("--num_threads", default=1, help="number of threads")
+  parser.add_argument("-i", "--image", type=str, default="grace_hopper.bmp", help="image to be classified")
+  parser.add_argument("-m", "--model_file", type=str, default="mobilenet_v1_1.0_224_quant.tflite", help=".tflite model to be executed")
+  parser.add_argument("-l", "--label_file", type=str, default="labels.txt", help="name of file containing labels")
+  parser.add_argument("--input_mean", type=float,default=127.5, help="input_mean")
+  parser.add_argument("--input_std", type=float, default=127.5,  help="input standard deviation")
+  parser.add_argument("--num_threads", type=int, default=4, help="number of threads")
   args = parser.parse_args()
 
-  interpreter = Interpreter(model_path=args.model_file, num_threads=args.num_threads)
+  interpreter = Interpreter(
+    model_path=args.model_file,
+    num_threads=args.num_threads,
+  )
   try:
     interpreter.allocate_tensors()
   except:
@@ -47,8 +45,6 @@ if __name__ == "__main__":
   input_data = np.expand_dims(img, axis=0)
   if floating_model:
     input_data = (np.float32(input_data) - args.input_mean) / args.input_std
-
-  interpreter.set_num_threads(int(args.num_threads)) #<- Specifies the num of threads assigned to inference
   interpreter.set_tensor(input_details[0]['index'], input_data)
 
   start_time = time.time()
