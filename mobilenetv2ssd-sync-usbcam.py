@@ -54,13 +54,15 @@ class ObjectDetectorLite():
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
 
-    def _boxes_coordinates(self,
-                            image,
-                            boxes,
-                            classes,
-                            scores,
-                            max_boxes_to_draw=20,
-                            min_score_thresh=.5):
+    def _boxes_coordinates(
+        self,
+        image,
+        boxes,
+        classes,
+        scores,
+        max_boxes_to_draw=20,
+        min_score_thresh=.5
+    ):
 
         if not max_boxes_to_draw:
             max_boxes_to_draw = boxes.shape[0]
@@ -92,11 +94,13 @@ class ObjectDetectorLite():
         num = self.interpreter.get_tensor(self.output_details[3]['index'])
 
         # Find detected boxes coordinates
-        return self._boxes_coordinates(image,
-                            np.squeeze(boxes[0]),
-                            np.squeeze(classes[0]+1).astype(np.int32),
-                            np.squeeze(scores[0]),
-                            min_score_thresh=threshold)
+        return self._boxes_coordinates(
+            image,
+            np.squeeze(boxes[0]),
+            np.squeeze(classes[0]+1).astype(np.int32),
+            np.squeeze(scores[0]),
+            min_score_thresh=threshold,
+        )
 
 
 def overlay_on_image(frames, object_infos, camera_width, camera_height):
@@ -115,7 +119,7 @@ def overlay_on_image(frames, object_infos, camera_width, camera_height):
         cv2.rectangle(img_cp, (box_left, box_top), (box_right, box_bottom), box_color, box_thickness)
 
         percentage = int(obj[2] * 100)
-        label_text = obj[3] + " (" + str(percentage) + "%)" 
+        label_text = obj[3] + " (" + str(percentage) + "%)"
 
         label_size = cv2.getTextSize(label_text, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 1)[0]
         label_left = box_left
@@ -184,7 +188,7 @@ if __name__ == '__main__':
         else:
             ret, color_image = cam.read()
             if not ret:
-              continue
+                continue
 
         prepimg = cv2.resize(color_image, (300, 300))
         frames = prepimg.copy()

@@ -22,13 +22,15 @@ class ObjectDetectorLite():
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
 
-    def _boxes_coordinates(self,
-                            image,
-                            boxes,
-                            classes,
-                            scores,
-                            max_boxes_to_draw=20,
-                            min_score_thresh=.5):
+    def _boxes_coordinates(
+        self,
+        image,
+        boxes,
+        classes,
+        scores,
+        max_boxes_to_draw=20,
+        min_score_thresh=.5
+    ):
 
         if not max_boxes_to_draw:
             max_boxes_to_draw = boxes.shape[0]
@@ -64,11 +66,13 @@ class ObjectDetectorLite():
         num = self.interpreter.get_tensor(self.output_details[3]['index'])
 
         # Find detected boxes coordinates
-        return self._boxes_coordinates(image,
-                            np.squeeze(boxes[0]),
-                            np.squeeze(classes[0]+1).astype(np.int32),
-                            np.squeeze(scores[0]),
-                            min_score_thresh=threshold)
+        return self._boxes_coordinates(
+            image,
+            np.squeeze(boxes[0]),
+            np.squeeze(classes[0]+1).astype(np.int32),
+            np.squeeze(scores[0]),
+            min_score_thresh=threshold,
+        )
 
 
 if __name__ == '__main__':

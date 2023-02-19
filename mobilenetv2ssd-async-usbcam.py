@@ -44,9 +44,9 @@ LABELS = [
 class ObjectDetectorLite():
     def __init__(self, model_path='detect.tflite', threads_num=4):
         try:
-            self.interpreter = Interpreter(model_path=model_path, num_threads=num_threads)
+            self.interpreter = Interpreter(model_path=model_path, num_threads=threads_num)
         except:
-            self.interpreter = tf.lite.Interpreter(model_path=model_path, num_threads=num_threads)
+            self.interpreter = tf.lite.Interpreter(model_path=model_path, num_threads=threads_num)
         try:
             self.interpreter.allocate_tensors()
         except:
@@ -54,13 +54,15 @@ class ObjectDetectorLite():
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
 
-    def _boxes_coordinates(self,
-                            image,
-                            boxes,
-                            classes,
-                            scores,
-                            max_boxes_to_draw=20,
-                            min_score_thresh=.5):
+    def _boxes_coordinates(
+        self,
+        image,
+        boxes,
+        classes,
+        scores,
+        max_boxes_to_draw=20,
+        min_score_thresh=.5
+    ):
 
         if not max_boxes_to_draw:
             max_boxes_to_draw = boxes.shape[0]
@@ -96,11 +98,13 @@ class ObjectDetectorLite():
         num = self.interpreter.get_tensor(self.output_details[3]['index'])
 
         # Find detected boxes coordinates
-        return self._boxes_coordinates(image,
-                            np.squeeze(boxes[0]),
-                            np.squeeze(classes[0]+1).astype(np.int32),
-                            np.squeeze(scores[0]),
-                            min_score_thresh=threshold)
+        return self._boxes_coordinates(
+            image,
+            np.squeeze(boxes[0]),
+            np.squeeze(classes[0]+1).astype(np.int32),
+            np.squeeze(scores[0]),
+            min_score_thresh=threshold,
+        )
 
 
 def camThread(results, frameBuffer, camera_width, camera_height, vidfps, usbcamno):
@@ -197,7 +201,7 @@ def overlay_on_image(frames, object_infos, camera_width, camera_height):
         cv2.rectangle(img_cp, (box_left, box_top), (box_right, box_bottom), box_color, box_thickness)
 
         percentage = int(obj[2] * 100)
-        label_text = obj[3] + " (" + str(percentage) + "%)" 
+        label_text = obj[3] + " (" + str(percentage) + "%)"
 
         label_size = cv2.getTextSize(label_text, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 1)[0]
         label_left = box_left
@@ -238,17 +242,21 @@ if __name__ == '__main__':
         results = mp.Queue()
 
         # Start streaming
-        p = mp.Process(target=camThread,
-                       args=(results, frameBuffer, camera_width, camera_height, vidfps, usbcamno),
-                       daemon=True)
+        p = mp.Process(
+            target=camThread,
+            args=(results, frameBuffer, camera_width, camera_height, vidfps, usbcamno),
+            daemon=True,
+        )
         p.start()
         processes.append(p)
 
         # Activation of inferencer
         for process_num in range(core_num):
-            p = mp.Process(target=inferencer,
-                           args=(results, frameBuffer, model, camera_width, camera_height, process_num, threads_num),
-                           daemon=True)
+            p = mp.Process(
+                target=inferencer,
+                args=(results, frameBuffer, model, camera_width, camera_height, process_num, threads_num),
+                daemon=True,
+            )
             p.start()
             processes.append(p)
 
