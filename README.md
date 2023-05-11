@@ -96,7 +96,7 @@ interpreter = Interpreter(model_path="foo.tflite", num_threads=4)
   sed -i -e 's/RUN pip3 install numpy~=1.19.2/RUN pip3 install numpy==1.24.3/g' tensorflow/lite/tools/pip_package/Dockerfile.py3
   sed -i '19a ENV DEBIAN_FRONTEND=noninteractive' tensorflow/lite/tools/pip_package/Dockerfile.py3
   sed -i '20a ENV TZ=Etc/UTC' tensorflow/lite/tools/pip_package/Dockerfile.py3
-  sed -i '33a \      git && \\' tensorflow/lite/tools/pip_package/Dockerfile.py3
+  sed -i '32a \      tzdata && \\' tensorflow/lite/tools/pip_package/Dockerfile.py3
   sed -i -e 's/RUN DEBIAN_FRONTEND=noninteractive/#RUN DEBIAN_FRONTEND=noninteractive/g' tensorflow/lite/tools/pip_package/Dockerfile.py3
   sed -i '50a \      python-is-python3 \\' tensorflow/lite/tools/pip_package/Dockerfile.py3
   sed -i '15a #include <assert.h>' tensorflow/tsl/framework/fixedpoint/MatMatProductAVX2.h
