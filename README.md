@@ -86,7 +86,7 @@ interpreter = Interpreter(model_path="foo.tflite", num_threads=4)
 ## Build parameter
 - git clone
   ```bash
-  TFVER=2.12.0-rc0
+  TFVER=2.12.0
   git clone -b v${TFVER} --depth 1 https://github.com/tensorflow/tensorflow.git
   cd tensorflow
   ```
