@@ -69,6 +69,8 @@ pip install numpy
 
 TFVER=2.15.0.post1
 
+PYVER=39
+or
 PYVER=310
 or
 PYVER=311
