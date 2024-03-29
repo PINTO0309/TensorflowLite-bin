@@ -97,7 +97,7 @@ interpreter = Interpreter(model_path="foo.tflite", num_threads=4)
 
 ## Build
 ```bash
-BRANCH=r2.15-tflite-build
+BRANCH=r2.16-tflite-build
 git clone -b ${BRANCH} --depth 1 https://github.com/PINTO0309/tensorflow.git
 cd tensorflow/lite/tools/pip_package
 
